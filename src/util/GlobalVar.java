@@ -1,7 +1,7 @@
 package util;
 
-import restaurant.food.Food;
-import restaurant.food.FoodService;
+import restaurant.food.dish.Dish;
+import restaurant.food.dish.DishService;
 import restaurant.Restaurant;
 import restaurant.RestaurantService;
 import visitor.VisitorService;
@@ -16,9 +16,9 @@ import java.util.List;
 public class GlobalVar {
     public static Restaurant restaurant = new Restaurant();
 
-    public static List<Food> basicFood = new ArrayList<>();
+    public static List<Dish> basicDish = new ArrayList<>();
 
-    public static FoodService foodService = new FoodService();
+    public static DishService dishService = new DishService();
     public static RestaurantService restaurantService = new RestaurantService();
     public static VisitorService visitorService = new VisitorService();
 }

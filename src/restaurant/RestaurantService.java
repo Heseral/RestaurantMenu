@@ -1,22 +1,17 @@
 package restaurant;
 
-import restaurant.food.Food;
-import restaurant.food.FoodCategory;
+import restaurant.food.dish.Dish;
 import util.GlobalVar;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static restaurant.food.FoodCategory.*;
-import static restaurant.food.FoodType.*;
 
 public class RestaurantService {
     public void fillRestaurantWithRandomFood(Restaurant restaurantToFill) {
-        restaurantToFill.setAvailableFood(generateBasicFood());
+        restaurantToFill.setAvailableDish(generateBasicFood());
     }
-    public List<Food> generateBasicFood() {
+    public List<Dish> generateBasicFood() {
         // todo
-        GlobalVar.basicFood.add(new Food("Борщ", null, generateRandomPrice(), LIQUID | HOT, Soup, generateRandomTimeToCook()));
+        GlobalVar.basicDish.add(new Dish("Борщ", null, generateRandomPrice(), null, Soup, generateRandomTimeToCook()));
         /*
         GlobalVar.basicFood.add(new Food(, , generateRandomPrice(), , , generateRandomTimeToCook()));
         GlobalVar.basicFood.add(new Food(, , generateRandomPrice(), , , generateRandomTimeToCook()));

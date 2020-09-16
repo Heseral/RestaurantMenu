@@ -1,6 +1,6 @@
 package restaurant;
 
-import restaurant.food.Food;
+import restaurant.food.dish.Dish;
 import java.util.List;
 
 public class Restaurant {
@@ -9,13 +9,13 @@ public class Restaurant {
     String location;
     ...features...
      */
-    private List<Food> availableFood;
+    private List<Dish> availableDish;
 
-    public List<Food> getAvailableFood() {
-        return availableFood;
+    public List<Dish> getAvailableDish() {
+        return availableDish;
     }
 
-    public void setAvailableFood(List<Food> availableFood) {
-        this.availableFood = availableFood;
+    public void setAvailableDish(List<Dish> availableDish) {
+        this.availableDish = availableDish;
     }
 }

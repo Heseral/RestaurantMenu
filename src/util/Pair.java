@@ -4,6 +4,11 @@ public class Pair<F, S> {
     private F first;
     private S second;
 
+    public Pair(F first, S second) {
+        setFirst(first);
+        setSecond(second);
+    }
+
     public F getFirst() {
         return first;
     }
