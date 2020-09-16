@@ -17,15 +17,14 @@ import java.util.List;
     - Нет, с пюрешкой, с пюрешкой! Ну, на обеде встретимся.
  */
 public class CutletsWithMashedPotato extends SoftFood {
-    public CutletsWithMashedPotato(String newName, List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
-        super(newName, newCombinationsSale, newPrice, newIngredients, newTimeToCook);
+    public CutletsWithMashedPotato(String newName, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
+        super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
-    public CutletsWithMashedPotato(List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice) {
+    public CutletsWithMashedPotato() {
         this(
                 "Котлеты с пюре",
-                newCombinationsSale,
-                newPrice,
+                199,
                 new ArrayList<>
                         (Arrays.asList(
                                 new Pair<>(Vegetables.class, 1),

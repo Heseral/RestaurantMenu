@@ -12,15 +12,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Vodka extends Alcoholic {
-    public Vodka(String newName, List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
-        super(newName, newCombinationsSale, newPrice, newIngredients, newTimeToCook);
+    public Vodka(String newName, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
+        super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
-    public Vodka(List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice) {
+    public Vodka() {
         this(
                 "Водка",
-                newCombinationsSale,
-                newPrice,
+                349,
                 new ArrayList<>
                         (Arrays.asList( // ну тут уже хотя бы больше похоже на правду, чем местное пиво или шампанское
                                 new Pair<>(Alcohol.class, 4),

@@ -10,15 +10,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Sandwich extends Snack {
-    public Sandwich(String newName, List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
-        super(newName, newCombinationsSale, newPrice, newIngredients, newTimeToCook);
+    public Sandwich(String newName, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
+        super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
-    public Sandwich(List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice) {
+    public Sandwich() {
         this(
                 "Бутерброд",
-                newCombinationsSale,
-                newPrice,
+                99,
                 new ArrayList<>
                         (Arrays.asList( // да, в этом элитном ресторане отдельно готовят хлеб для бутерброда
                                 new Pair<>(Meat.class, 1),

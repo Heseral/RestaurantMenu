@@ -13,15 +13,14 @@ import java.util.List;
 
 public class Beer extends Alcoholic {
 
-    public Beer(String newName, List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
-        super(newName, newCombinationsSale, newPrice, newIngredients, newTimeToCook);
+    public Beer(String newName, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
+        super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
-    public Beer(List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice) {
+    public Beer() {
         this(
                 "Пиво",
-                newCombinationsSale,
-                newPrice,
+                199,
                 new ArrayList<>
                         (Arrays.asList(
                                 new Pair<>(Alcohol.class, 1), // на самом деле получится 5%-ный раствор спирта и воды,

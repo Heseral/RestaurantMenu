@@ -10,15 +10,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Cake extends SweetFood {
-    public Cake(String newName, List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
-        super(newName, newCombinationsSale, newPrice, newIngredients, newTimeToCook);
+    public Cake(String newName, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
+        super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
-    public Cake(List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice) {
+    public Cake() {
         this(
-                "",
-                newCombinationsSale,
-                newPrice,
+                "Фруктовый торт",
+                399,
                 new ArrayList<>
                         (Arrays.asList(
                                 new Pair<>(Sugar.class, 2),

@@ -12,15 +12,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Soda extends Drink {
-    public Soda(String newName, List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
-        super(newName, newCombinationsSale, newPrice, newIngredients, newTimeToCook);
+    public Soda(String newName, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
+        super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
-    public Soda(List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice) {
+    public Soda() {
         this(
                 "Газировка",
-                newCombinationsSale,
-                newPrice,
+                99,
                 new ArrayList<>
                         (Arrays.asList(
                                 new Pair<>(Water.class, 1)
