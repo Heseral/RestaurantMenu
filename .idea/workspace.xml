@@ -2,49 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5f0f73b-bc7d-4e58-bef1-6770fd978eee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/Dish.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/Drink.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Alcoholic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Beer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Champagne.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Vodka.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/non_alcoholic/Milkshake.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/non_alcoholic/Soda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/non_alcoholic/Water.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/snacks/Bread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/snacks/Sandwich.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/snacks/Snack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soft_food/CutletsWithMashedPotato.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soft_food/SoftFood.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soft_food/Spaghetti.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soups/Borscht.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soups/FishSoup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soups/Soup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/sweet_food/Cake.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/sweet_food/Pancakes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/sweet_food/SweetFood.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Alcohol.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Egg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Flour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Honey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Ingredient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Meat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Milk.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Sugar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Vegetable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Water.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Fruits.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Vegetables.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/restaurant/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/restaurant/RestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/RestaurantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/restaurant/food/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/restaurant/food/FoodCategory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/restaurant/food/FoodService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/DishService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/restaurant/food/FoodType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/Dish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/Drink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/Drink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Alcoholic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Alcoholic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Beer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Beer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Champagne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Champagne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Vodka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/alcoholic/Vodka.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/non_alcoholic/Milkshake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/non_alcoholic/Milkshake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/non_alcoholic/Soda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/non_alcoholic/Soda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/non_alcoholic/Water.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/drinks/non_alcoholic/Water.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/snacks/Bread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/snacks/Bread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/snacks/Sandwich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/snacks/Sandwich.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/snacks/Snack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/snacks/Snack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soft_food/CutletsWithMashedPotato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soft_food/CutletsWithMashedPotato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soft_food/SoftFood.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soft_food/SoftFood.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soft_food/Spaghetti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soft_food/Spaghetti.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soups/Borscht.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soups/Borscht.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soups/FishSoup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soups/FishSoup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soups/Soup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/soups/Soup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/sweet_food/Cake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/sweet_food/Cake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/sweet_food/Pancakes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/sweet_food/Pancakes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/sweet_food/SweetFood.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/dishes/sweet_food/SweetFood.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/ingredient/Alcohol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Alcohol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/ingredient/Honey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/ingredient/Vegetable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/food/ingredient/Water.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/ingredient/Water.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util/GlobalVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/GlobalVar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Pair.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,15 +63,15 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -106,7 +93,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -120,5 +109,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="664" y="202" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600189752482" />
+    <state x="592" y="217" width="736" height="606" key="find.popup" timestamp="1600265657272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="592" y="217" width="736" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600265657272" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1600270230141">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600270230141" />
   </component>
 </project>

@@ -1,24 +1,25 @@
 package util;
 
-import restaurant.food.dish.Dish;
 import restaurant.food.dish.DishService;
 import restaurant.Restaurant;
 import restaurant.RestaurantService;
 import visitor.VisitorService;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/*
-    Раз статичных методов у сервисов мне не создать, придется сохранять сервисы в глобальные переменные.
-    Все еще не понимаю чего от меня хотят, чем вообще плоха классическая модель ООП?
-*/
 public class GlobalVar {
-    public static Restaurant restaurant = new Restaurant();
+    public final static Restaurant RESTAURANT = new Restaurant();
 
-    public static List<Dish> basicDish = new ArrayList<>();
+    // TODO: DELIT DIS!!!!!!!!!! внести все это как локальные переменный в Main
+    public final static DishService DISH_SERVICE = new DishService();
+    public final static RestaurantService RESTAURANT_SERVICE = new RestaurantService();
+    public final static VisitorService VISITOR_SERVICE = new VisitorService();
+    // конец туду
 
-    public static DishService dishService = new DishService();
-    public static RestaurantService restaurantService = new RestaurantService();
-    public static VisitorService visitorService = new VisitorService();
+    // по крайней мере нужно время на то чтобы официанту донести заказ
+    public final static int COOK_TIME_MINIMUM = 1;
+    // откуда я взял эти цифры? Очевидно, среднепотолочные значения
+    public final static int COOK_TIME_LOW = 5;
+    public final static int COOK_TIME_DEFAULT = 15;
+    public final static int COOK_TIME_LONG = 30;
+    // не будем мучать клиентов ожиданиями выше этого значения. И так ждать абстрактный час, ужас!
+    public final static int COOK_TIME_MAXIMUM = 60;
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class Drink extends Dish {
 
-    public Drink(String newName, List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice, List<Pair<Ingredient, Integer>> newIngredients, int newTimeToCook) {
+    public Drink(String newName, List<Pair<List<Dish>, Integer>> newCombinationsSale, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
         super(newName, newCombinationsSale, newPrice, newIngredients, newTimeToCook);
     }
 }
