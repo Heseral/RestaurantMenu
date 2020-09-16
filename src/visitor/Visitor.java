@@ -1,4 +1,4 @@
-package Visitor;
+package visitor;
 
 public class Visitor {
     // пожелания в блюдах в виде битовых флагов, напр. человек может хотеть выпить воды и съесть курочку

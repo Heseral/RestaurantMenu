@@ -1,4 +1,4 @@
-package RestaurantService;
+package restaurant.food;
 
 public enum FoodCategory {
     Salad,
