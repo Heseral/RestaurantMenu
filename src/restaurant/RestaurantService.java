@@ -1,6 +1,5 @@
 package restaurant;
 
-import restaurant.food.dish.Dish;
 import restaurant.food.dish.dishes.drinks.alcoholic.Beer;
 import restaurant.food.dish.dishes.drinks.alcoholic.Champagne;
 import restaurant.food.dish.dishes.drinks.alcoholic.Vodka;
@@ -15,11 +14,8 @@ import restaurant.food.dish.dishes.soups.Borscht;
 import restaurant.food.dish.dishes.soups.FishSoup;
 import restaurant.food.dish.dishes.sweet_food.Cake;
 import restaurant.food.dish.dishes.sweet_food.Pancakes;
-import util.Pair;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class RestaurantService {
     public void fillDefaultRestaurantMenu(Restaurant restaurantToFill) {

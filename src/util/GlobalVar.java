@@ -1,8 +1,8 @@
 package util;
 
-import restaurant.food.dish.DishService;
 import restaurant.Restaurant;
 import restaurant.RestaurantService;
+import restaurant.food.dish.DishService;
 import visitor.VisitorService;
 
 public class GlobalVar {

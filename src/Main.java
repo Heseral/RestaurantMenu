@@ -16,5 +16,7 @@ public class Main {
 
         restaurantService.fillDefaultRestaurantMenu(restaurant);
         restaurantService.fillDefaultRestaurantCombinationsSales(restaurant);
+
+
     }
 }

@@ -1,6 +1,5 @@
 package restaurant.food.dish.dishes.drinks.alcoholic;
 
-import restaurant.food.dish.dishes.sweet_food.Cake;
 import restaurant.food.ingredient.Alcohol;
 import restaurant.food.ingredient.Ingredient;
 import restaurant.food.ingredient.Water;

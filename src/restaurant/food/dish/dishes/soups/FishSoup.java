@@ -1,6 +1,5 @@
 package restaurant.food.dish.dishes.soups;
 
-import restaurant.food.dish.Dish;
 import restaurant.food.ingredient.Ingredient;
 import restaurant.food.ingredient.Meat;
 import restaurant.food.ingredient.Vegetables;

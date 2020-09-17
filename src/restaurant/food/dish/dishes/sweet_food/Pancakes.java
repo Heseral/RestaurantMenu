@@ -1,6 +1,5 @@
 package restaurant.food.dish.dishes.sweet_food;
 
-import restaurant.food.dish.Dish;
 import restaurant.food.ingredient.Egg;
 import restaurant.food.ingredient.Flour;
 import restaurant.food.ingredient.Ingredient;

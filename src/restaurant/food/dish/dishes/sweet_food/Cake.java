@@ -1,6 +1,5 @@
 package restaurant.food.dish.dishes.sweet_food;
 
-import restaurant.food.dish.Dish;
 import restaurant.food.ingredient.*;
 import util.GlobalVar;
 import util.Pair;
