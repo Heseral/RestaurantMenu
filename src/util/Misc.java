@@ -15,7 +15,7 @@ public abstract class Misc {
     }
 
     public static int round(int val, int rounding) {
-        return (int) round((double) val, (double) rounding);
+        return (int) round(val, (double) rounding);
     }
 
     public static int round(double val, int rounding) {

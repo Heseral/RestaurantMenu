@@ -18,7 +18,7 @@ public abstract class Dish extends Food {
     // Напомню, что приготовление из ингредиентов не предусматривается ТЗ, сказано только "в ресторане есть блюда".
     // В теории может быть расширено и до таких целей, но тогда, думаю, лучше будет объединить классы ингредиентов и
     // еды, так как, например, немного глупо готовить хлеб с нуля из базовых ингредиентов для бутерброда.
-    private List<Pair<Class<? extends Ingredient>, Integer>> necessaryIngredients;
+    private List<Pair<Class<? extends Ingredient>, Integer>> recipe;
 
     // не передавайте нуллы никуда. Лучше передайте свежесозданный, но пустой объект
     public Dish(
@@ -29,16 +29,16 @@ public abstract class Dish extends Food {
     ) {
         setName(newName);
         setBasicPrice(newPrice);
-        setNecessaryIngredients(newIngredients);
+        setRecipe(newIngredients);
         setTimeToCook(newTimeToCook);
     }
 
-    public List<Pair<Class<? extends Ingredient>, Integer>> getNecessaryIngredients() {
-        return necessaryIngredients;
+    public List<Pair<Class<? extends Ingredient>, Integer>> getRecipe() {
+        return recipe;
     }
 
-    public void setNecessaryIngredients(List<Pair<Class<? extends Ingredient>, Integer>> necessaryIngredients) {
-        this.necessaryIngredients = necessaryIngredients;
+    public void setRecipe(List<Pair<Class<? extends Ingredient>, Integer>> recipe) {
+        this.recipe = recipe;
     }
 
     public int getTimeToCook() {

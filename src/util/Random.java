@@ -28,7 +28,7 @@ public abstract class Random {
         return list.get((int) Math.floor(Math.random() * list.size()));
     }
 
-    public static <T> T pick(T...var) {
+    public static <T> T pick(T... var) {
         return var[(int) Math.floor(Math.random() * var.length)];
     }
 

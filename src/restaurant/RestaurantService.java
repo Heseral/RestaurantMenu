@@ -1,5 +1,6 @@
 package restaurant;
 
+import restaurant.food.dish.Dish;
 import restaurant.food.dish.dishes.drinks.alcoholic.Beer;
 import restaurant.food.dish.dishes.drinks.alcoholic.Champagne;
 import restaurant.food.dish.dishes.drinks.alcoholic.Vodka;
@@ -14,10 +15,21 @@ import restaurant.food.dish.dishes.soups.Borscht;
 import restaurant.food.dish.dishes.soups.FishSoup;
 import restaurant.food.dish.dishes.sweet_food.Cake;
 import restaurant.food.dish.dishes.sweet_food.Pancakes;
+import restaurant.food.ingredient.*;
+import util.Pair;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RestaurantService {
+
+    ///////////////////////////////
+    //    МЕНЮ, СКЛАД И СКИДКИ   //
+    ///////////////////////////////
+
     public void fillDefaultRestaurantMenu(Restaurant restaurantToFill) {
         restaurantToFill.setMenu(Arrays.asList(
                 // алкогольные напитки
@@ -52,6 +64,21 @@ public class RestaurantService {
 
     }
 
+    public void fillDefaultRestaurantIngredients(Restaurant restaurant) {
+        Map<Class<? extends Ingredient>, Integer> ingredients = new HashMap<>();
+        ingredients.put(Alcohol.class, 40);
+        ingredients.put(Egg.class, 40);
+        ingredients.put(Flour.class, 20);
+        ingredients.put(Fruits.class, 25);
+        ingredients.put(Meat.class, 30);
+        ingredients.put(Milk.class, 20);
+        ingredients.put(Sugar.class, 25);
+        ingredients.put(Vegetables.class, 50);
+        ingredients.put(restaurant.food.ingredient.Water.class, Integer.MAX_VALUE);
+
+        restaurant.setIngredients(ingredients);
+    }
+
     public void addNewCombinationSaleToRestaurant(Restaurant restaurantToAdd, CombinationSale saleToAdd) {
         restaurantToAdd.getCombinationsSales().add(saleToAdd);
     }
@@ -69,4 +96,30 @@ public class RestaurantService {
     public void clearCombinationSaleListOfRestaurant(Restaurant restaurantToClear) {
         restaurantToClear.getCombinationsSales().clear();
     }
+
+    ///////////////////////////////
+    //       ПРИГОТОВЛЕНИЕ       //
+    ///////////////////////////////
+
+    public Dish tryToCookDish(Restaurant restaurant, Class<? extends Dish> dish)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Map<Class<? extends Ingredient>, Integer> availableIngredients = restaurant.getIngredients();
+        // так что тут у нас рефлексия ахахах ноканецта. Счетчик простреленных ног: 0
+        Dish dishToCook = dish.getConstructor().newInstance();
+        List<Pair<Class<? extends Ingredient>, Integer>> recipe = dishToCook.getRecipe();
+
+        // а есть из чего готовить?
+        for (Pair<Class<? extends Ingredient>, Integer> recipePart : recipe) {
+            if (availableIngredients.get(recipePart.getFirst()) < recipePart.getSecond()) {
+                return null;
+            }
+        }
+        // да, есть, поэтому готовим и тратим ингредиенты
+        for (Pair<Class<? extends Ingredient>, Integer> recipePart : recipe) {
+            availableIngredients.put(recipePart.getFirst(), availableIngredients.get(recipePart.getFirst()) - recipePart.getSecond());
+        }
+
+        return dishToCook;
+    }
+
 }
