@@ -5,9 +5,12 @@ import restaurant.Restaurant;
 import restaurant.RestaurantService;
 import restaurant.food.dish.Dish;
 import restaurant.food.ingredient.Ingredient;
+import util.GlobalVar;
 import util.Misc;
 import util.Pair;
+import util.Random;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,41 +18,86 @@ public class VisitorService {
 
     /**
      * Заставляет посетителя сделать абсолютно случайный заказ - случайные категории и блюда.
-     * @param visitor
-     * @param 
+     * Есть малая вероятность, что клиент ничего не закажет
+     * @param visitor посетитель, делающий заказ
      */
-    public void createAbsolutelyRandomOrder(Visitor visitor) {
+    public boolean createAbsolutelyRandomOrder(Visitor visitor, RestaurantService restaurantService, Restaurant restaurant)
+            throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        List<Class<? extends Dish>> desirableCategories = new ArrayList<>();
+        for (Class<? extends Dish> category : GlobalVar.DISH_CATEGORIES) {
+            // вероятность заказа этой категории 50%
+            if (Random.prob(50)) {
+                int amount = Random.random(1, 3);
+                for (int i = 0; i < amount; i++) {
+                    desirableCategories.add(category);
+                }
+            }
+        }
 
+        return createPartiallyRandomOrder(visitor, desirableCategories, restaurantService, restaurant);
     }
 
     /**
      * Заставляет посетителя сделать частично случайный заказ - случайные блюда определенной категории.
-     * @param visitor
-     * @param desirableCategories
+     * @param visitor посетитель, делающий заказ
+     * @param desirableCategories предпочитаемые категории. Если одна категория встречается более одного раза, то
+     *                            считается, что посетитель желает 2 блюда с такой категорией
      */
-    public void createPartiallyRandomOrder(Visitor visitor, List<Class<? extends Dish>> desirableCategories) {
+    public boolean createPartiallyRandomOrder(
+            Visitor visitor,
+            List<Class<? extends Dish>> desirableCategories,
+            RestaurantService restaurantService,
+            Restaurant restaurant
+    ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        List<Dish> desirableDishes = new ArrayList<>();
+        for (Class<? extends Dish> desirableCategory : desirableCategories) {
+            desirableDishes.add(Random.pick(GlobalVar.DISHES_BY_CATEGORY.get(desirableCategory)).getConstructor().newInstance());
+        }
 
+        return createSpecifiedOrder(visitor, desirableDishes, restaurantService, restaurant);
     }
 
     /**
      * Заставляет посетителя сделать конкретный заказ - блюда определены.
-     * @param visitor
-     * @param desirableDishes
+     * @param visitor посетитель, делающий заказ
+     * @param desirableDishes предпочитаемые блюда
+     * @param restaurantService сервис ресторана, обслуживающий клиента
+     * @param restaurant ресторан, в котором происходит заказ
      */
-    public void createSpecifiedOrder(Visitor visitor, List<Class<? extends Dish>> desirableDishes) {
-        
+    public boolean createSpecifiedOrder(Visitor visitor, List<Dish> desirableDishes, RestaurantService restaurantService, Restaurant restaurant) {
+        // нельзя создать пустой заказ
+        if (desirableDishes.size() < 1) {
+            return false;
+        }
+
+        for (Dish desirableDish : desirableDishes) {
+            tryToAddDishToOrder(visitor, desirableDish, restaurantService, restaurant);
+        }
+
+        makeOrder(visitor, restaurantService, restaurant);
+        return true;
+    }
+
+    /**
+     * Сообщает ресторану, что заказ сделан и передаем ему этот заказ
+     * @param visitor посетитель, делающий заказ
+     * @param restaurantService сервис ресторана, обслуживающего посетителя
+     * @param restaurant ресторан, в котором был делается заказ
+     */
+    public void makeOrder(Visitor visitor, RestaurantService restaurantService, Restaurant restaurant) {
+        restaurantService.handleOrder(restaurant, visitor.getOrder());
     }
 
 
     /**
      * Попытка посетителя заказать блюдо.
-     * @param visitor
-     * @param dish
-     * @param restaurantService
-     * @param restaurant
+     * @param visitor посетитель, заказывающий блюдо
+     * @param dish блюдо, заказываемое посетителем
+     * @param restaurantService сервис ресторана, обслуживающий клиента
+     * @param restaurant ресторан, в котором происходит заказ
      * @return true, если блюдо успешно заказано, а иначе false
      */
-    public boolean tryToOrderDish(Visitor visitor, Dish dish, RestaurantService restaurantService, Restaurant restaurant) {
+    public boolean tryToAddDishToOrder(Visitor visitor, Dish dish, RestaurantService restaurantService, Restaurant restaurant) {
         // может ли посетитель себе позволить блюдо?
         if (!canVisitorOrderDish(visitor, dish, restaurant)) {
             return false;
@@ -60,16 +108,16 @@ public class VisitorService {
             return false;
         }
 
-        // и ресторан, и посетитель, готовы к обмену. Заказ успешен
+        addDishToOrder(visitor, dish);
         return true;
     }
 
     /**
      * Проверяет возможность заказа посетителем определенного блюда. В проверку включена цена, свободное время,
      * ограничения посетителя. Если денег не хватает, запускается алгоритм поиска наборов блюд со скидкой в заказе.
-     * @param visitor
-     * @param dish
-     * @param restaurant
+     * @param visitor посетитель, пытающийся заказать блюдо
+     * @param dish блюдо, заказываемое посетителем
+     * @param restaurant ресторан, в котором происходит попытка заказа
      * @return true, если посетитель может заказать это блюдо, а иначе false
      */
     private boolean canVisitorOrderDish(Visitor visitor, Dish dish, Restaurant restaurant) {
@@ -91,8 +139,8 @@ public class VisitorService {
 
     /**
      * Добавляет блюдо в заказ посетителя, считает новую цену заказа
-     * @param visitor
-     * @param dish
+     * @param visitor посетитель, который составляет себе заказ
+     * @param dish блюдо, которое будет добавлено в заказ
      */
     private void addDishToOrder(Visitor visitor, Dish dish) {
         Order order = visitor.getOrder();
@@ -104,8 +152,8 @@ public class VisitorService {
     /**
      * Метод проверяет, есть ли в заказе клиента блюда, образующие комбинацию. Если таковая имеется,
      * изменяется цена за комбинацию.
-     * @param visitor
-     * @param restaurant
+     * @param visitor посетитель, для которого будут искаться скидки
+     * @param restaurant ресторан, в котором происходит заказ
      * @return false, если не найдено скидок; true, если найдена хоть одна
      */
     private boolean handleCombinationSalesInOrder(Visitor visitor, Restaurant restaurant) {

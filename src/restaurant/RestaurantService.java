@@ -5,6 +5,8 @@ import restaurant.food.ingredient.*;
 import util.GlobalVar;
 import util.Pair;
 import util.Random;
+import visitor.Order;
+
 import java.util.*;
 
 public class RestaurantService {
@@ -65,6 +67,7 @@ public class RestaurantService {
     //       ПРИГОТОВЛЕНИЕ       //
     ///////////////////////////////
 
+    // todo: переименовать "может ли выполнить заказ", не забирать тут ингредиенты, а поручить это обработчику событий
     public Dish tryToCookDish(Restaurant restaurant, Dish dish) {
         Map<Class<? extends Ingredient>, Integer> availableIngredients = restaurant.getIngredients();
         List<Pair<Class<? extends Ingredient>, Integer>> recipe = dish.getRecipe();
@@ -80,7 +83,23 @@ public class RestaurantService {
             availableIngredients.put(recipePart.getFirst(), availableIngredients.get(recipePart.getFirst()) - recipePart.getSecond());
         }
 
+        // TODO: !!!НЕ ЗАБИРАТЬ ИНГРЕДИЕНТЫ ЗДЕСЬ!!!, ПОРУЧИТЬ ЭТО ОБРАБОТЧИКУ СОБЫТИЙ
+        // todo: обработчик событий. В него добавлять заказы к приготовлению с информацией для кого заказ
+
         return dish;
+    }
+
+    public void handleOrder(Restaurant restaurant, Order order) {
+        for (Dish orderedDish : order.getOrderedDishes()) {
+            if (tryToCookDish(restaurant, orderedDish) != null) {
+                // todo: поручитьПопыткуГотовкиОбработчикуСобытий()
+            }
+            /*
+                feature: иначе спросить клиента готов ли он подождать.
+                    Если нет, возвращаем деньги за блюдо.
+                    Если да, поручить обработчику событий попытку приготовления блюда
+             */
+        }
     }
 
 }
