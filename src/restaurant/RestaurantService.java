@@ -1,13 +1,18 @@
 package restaurant;
 
 import restaurant.food.dish.Dish;
-import restaurant.food.ingredient.*;
+import restaurant.food.ingredient.Ingredient;
+import restaurant.food.ingredient.Water;
 import util.GlobalVar;
+import util.Misc;
 import util.Pair;
 import util.Random;
 import visitor.Order;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RestaurantService {
 
@@ -15,11 +20,17 @@ public class RestaurantService {
     //    МЕНЮ, СКЛАД И СКИДКИ   //
     ///////////////////////////////
 
-    public void fillDefaultRestaurantMenu(Restaurant restaurant) {
+    public void resupplyIngredientsRandomly(Restaurant restaurant) {
+        for (Class<? extends Ingredient> ingredient : GlobalVar.INGREDIENTS) {
+            restaurant.getIngredients().put(ingredient, Math.min(restaurant.getIngredients().get(ingredient) + Random.random(5, 20), 100));
+        }
+    }
+
+    public void setDefaultRestaurantMenu(Restaurant restaurant) {
         restaurant.setMenu(GlobalVar.ALL_AVAILABLE_DISHES);
     }
 
-    public void fillDefaultRestaurantCombinationsSales(Restaurant restaurant) {
+    public void setDefaultRestaurantCombinationsSales(Restaurant restaurant) {
         int amountOfCombinationSales = Random.random(5, 15);
         int amountOfDishesForCombinationSale;
         List<Class<? extends Dish>> combinationSaleDishes = new ArrayList<>();
@@ -35,7 +46,7 @@ public class RestaurantService {
         }
     }
 
-    public void fillDefaultRestaurantIngredientsRandomly(Restaurant restaurant) {
+    public void setDefaultRestaurantIngredientsRandomly(Restaurant restaurant) {
         Map<Class<? extends Ingredient>, Integer> ingredients = new HashMap<>();
         for (Class<? extends Ingredient> ingredient : GlobalVar.INGREDIENTS) {
             ingredients.put(ingredient, Random.random(40, 60));
@@ -85,6 +96,7 @@ public class RestaurantService {
 
         // TODO: !!!НЕ ЗАБИРАТЬ ИНГРЕДИЕНТЫ ЗДЕСЬ!!!, ПОРУЧИТЬ ЭТО ОБРАБОТЧИКУ СОБЫТИЙ
         // todo: обработчик событий. В него добавлять заказы к приготовлению с информацией для кого заказ
+        // todo: использовать TimerTask & Timer
 
         return dish;
     }

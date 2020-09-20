@@ -1,10 +1,12 @@
 import restaurant.Restaurant;
 import restaurant.RestaurantService;
-import restaurant.food.dish.dishes.drinks.alcoholic.Vodka;
-import restaurant.food.dish.dishes.soups.FishSoup;
-import restaurant.food.ingredient.*;
+import util.Random;
+import visitor.Visitor;
+import visitor.VisitorService;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /*
     9. Меню ресторана, скидки. Дано меню ресторана, которое содержит набор
@@ -19,57 +21,34 @@ public class Main {
         Restaurant restaurant = new Restaurant();
         RestaurantService restaurantService = new RestaurantService();
 
-        restaurantService.fillDefaultRestaurantMenu(restaurant);
-        restaurantService.fillDefaultRestaurantCombinationsSales(restaurant);
-        restaurantService.fillDefaultRestaurantIngredientsRandomly(restaurant);
+        restaurantService.setDefaultRestaurantMenu(restaurant);
+        restaurantService.setDefaultRestaurantCombinationsSales(restaurant);
+        restaurantService.setDefaultRestaurantIngredientsRandomly(restaurant);
 
-        System.out.println(">>>>>>>>>> START <<<<<<<<<<");
+        VisitorService visitorService = new VisitorService();
 
-        System.out.println(restaurant.getIngredients().get(Alcohol.class));
-        System.out.println(restaurant.getIngredients().get(Egg.class));
-        System.out.println(restaurant.getIngredients().get(Flour.class));
-        System.out.println(restaurant.getIngredients().get(Fruits.class));
-        System.out.println(restaurant.getIngredients().get(Meat.class));
-        System.out.println(restaurant.getIngredients().get(Milk.class));
-        System.out.println(restaurant.getIngredients().get(Sugar.class));
-        System.out.println(restaurant.getIngredients().get(Vegetables.class));
-        System.out.println(restaurant.getIngredients().get(Water.class));
 
-        System.out.println("    =====> COOKING...");
-        try {
-            System.out.println("        COOKED: " + restaurantService.tryToCookDish(restaurant, FishSoup.class));
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            e.printStackTrace();
-        }
+        TimerTask newVisitor = new TimerTask() {
+            @Override
+            public void run() {
+                Visitor visitor = new Visitor();
+                try {
+                    visitorService.createAbsolutelyRandomOrder(visitor, restaurantService , restaurant);
+                } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        TimerTask ingredientsResupply = new TimerTask() {
+            @Override
+            public void run() {
+                restaurantService.resupplyIngredientsRandomly(restaurant);
+            }
+        };
+        Timer visitorTimer = new Timer();
+        visitorTimer.schedule(newVisitor, 0, 15 * 1000);
 
-        System.out.println("            " + restaurant.getIngredients().get(Alcohol.class));
-        System.out.println("            " + restaurant.getIngredients().get(Egg.class));
-        System.out.println("            " + restaurant.getIngredients().get(Flour.class));
-        System.out.println("            " + restaurant.getIngredients().get(Fruits.class));
-        System.out.println("            " + restaurant.getIngredients().get(Meat.class));
-        System.out.println("            " + restaurant.getIngredients().get(Milk.class));
-        System.out.println("            " + restaurant.getIngredients().get(Sugar.class));
-        System.out.println("            " + restaurant.getIngredients().get(Vegetables.class));
-        System.out.println("            " + restaurant.getIngredients().get(Water.class));
-        System.out.println("    <===== END COOKED...");
-
-        System.out.println("    =====> COOKING...");
-        try {
-            System.out.println("        COOKED: " + restaurantService.tryToCookDish(restaurant, Vodka.class));
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            e.printStackTrace();
-        }
-        System.out.println("            " + restaurant.getIngredients().get(Alcohol.class));
-        System.out.println("            " + restaurant.getIngredients().get(Egg.class));
-        System.out.println("            " + restaurant.getIngredients().get(Flour.class));
-        System.out.println("            " + restaurant.getIngredients().get(Fruits.class));
-        System.out.println("            " + restaurant.getIngredients().get(Meat.class));
-        System.out.println("            " + restaurant.getIngredients().get(Milk.class));
-        System.out.println("            " + restaurant.getIngredients().get(Sugar.class));
-        System.out.println("            " + restaurant.getIngredients().get(Vegetables.class));
-        System.out.println("            " + restaurant.getIngredients().get(Water.class));
-        System.out.println("    <===== END COOKED...");
-
-        System.out.println(">>>>>>>>>> END <<<<<<<<<<");
+        Timer ingredientsResupplyTimer = new Timer();
+        ingredientsResupplyTimer.schedule(ingredientsResupply, 0, 120 * 1000);
     }
 }

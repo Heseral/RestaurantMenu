@@ -2,7 +2,6 @@ package restaurant;
 
 import restaurant.food.dish.Dish;
 import restaurant.food.ingredient.Ingredient;
-import util.Pair;
 
 import java.util.*;
 

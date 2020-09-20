@@ -23,7 +23,10 @@ import restaurant.food.dish.dishes.sweet_food.Pancakes;
 import restaurant.food.dish.dishes.sweet_food.SweetFood;
 import restaurant.food.ingredient.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public abstract class GlobalVar {
     // по крайней мере нужно время на то чтобы официанту донести заказ
@@ -84,6 +87,7 @@ public abstract class GlobalVar {
             restaurant.food.ingredient.Water.class
     ));
     public final static List<Class<? extends Dish>> ALL_AVAILABLE_DISHES = new ArrayList<>();
+
     static {
         for (Class<? extends Dish> category : DISH_CATEGORIES) {
             ALL_AVAILABLE_DISHES.addAll(DISHES_BY_CATEGORY.get(category));
