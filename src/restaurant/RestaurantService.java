@@ -1,28 +1,11 @@
 package restaurant;
 
 import restaurant.food.dish.Dish;
-import restaurant.food.dish.dishes.drinks.alcoholic.Beer;
-import restaurant.food.dish.dishes.drinks.alcoholic.Champagne;
-import restaurant.food.dish.dishes.drinks.alcoholic.Vodka;
-import restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake;
-import restaurant.food.dish.dishes.drinks.non_alcoholic.Soda;
-import restaurant.food.dish.dishes.drinks.non_alcoholic.Water;
-import restaurant.food.dish.dishes.snacks.Bread;
-import restaurant.food.dish.dishes.snacks.Sandwich;
-import restaurant.food.dish.dishes.soft_food.CutletsWithMashedPotato;
-import restaurant.food.dish.dishes.soft_food.Spaghetti;
-import restaurant.food.dish.dishes.soups.Borscht;
-import restaurant.food.dish.dishes.soups.FishSoup;
-import restaurant.food.dish.dishes.sweet_food.Cake;
-import restaurant.food.dish.dishes.sweet_food.Pancakes;
 import restaurant.food.ingredient.*;
+import util.GlobalVar;
 import util.Pair;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import util.Random;
+import java.util.*;
 
 public class RestaurantService {
 
@@ -30,57 +13,38 @@ public class RestaurantService {
     //    МЕНЮ, СКЛАД И СКИДКИ   //
     ///////////////////////////////
 
-    public void fillDefaultRestaurantMenu(Restaurant restaurantToFill) {
-        restaurantToFill.setMenu(Arrays.asList(
-                // алкогольные напитки
-                Beer.class,
-                Champagne.class,
-                Vodka.class,
-                // неалкогольные напитки
-                Milkshake.class,
-                Soda.class,
-                Water.class,
-                // закуски
-                Bread.class,
-                Sandwich.class,
-                // мягкая еда(второе)
-                CutletsWithMashedPotato.class,
-                Spaghetti.class,
-                // супы(первое)
-                Borscht.class,
-                FishSoup.class,
-                // десерты
-                Cake.class,
-                Pancakes.class
-        ));
+    public void fillDefaultRestaurantMenu(Restaurant restaurant) {
+        restaurant.setMenu(GlobalVar.ALL_AVAILABLE_DISHES);
     }
 
-    public void fillDefaultRestaurantCombinationsSales(Restaurant restaurantToFill) {
-        addNewCombinationSaleToRestaurant(restaurantToFill, new CombinationSale(10, Cake.class, Soda.class));
-        // суровый русский обед
-        addNewCombinationSaleToRestaurant(restaurantToFill, new CombinationSale(25, Vodka.class, Borscht.class, CutletsWithMashedPotato.class));
-        addNewCombinationSaleToRestaurant(restaurantToFill, new CombinationSale(10, Pancakes.class, Milkshake.class));
-        addNewCombinationSaleToRestaurant(restaurantToFill, new CombinationSale(15, Beer.class, Sandwich.class));
-
+    public void fillDefaultRestaurantCombinationsSales(Restaurant restaurant) {
+        int amountOfCombinationSales = Random.random(5, 15);
+        int amountOfDishesForCombinationSale;
+        List<Class<? extends Dish>> combinationSaleDishes = new ArrayList<>();
+        Class<? extends Dish> dishInCombinationSale;
+        for (int i = 0; i < amountOfCombinationSales; i++) {
+            amountOfDishesForCombinationSale = Random.random(2, 5);
+            for (int j = 0; j < amountOfDishesForCombinationSale; j++) {
+                dishInCombinationSale = Random.pick(GlobalVar.ALL_AVAILABLE_DISHES);
+                combinationSaleDishes.add(dishInCombinationSale);
+                restaurant.getCombinationSaleTriggers().add(dishInCombinationSale);
+            }
+            restaurant.getCombinationsSales().add(new CombinationSale(Random.random(5, 30), combinationSaleDishes));
+        }
     }
 
-    public void fillDefaultRestaurantIngredients(Restaurant restaurant) {
+    public void fillDefaultRestaurantIngredientsRandomly(Restaurant restaurant) {
         Map<Class<? extends Ingredient>, Integer> ingredients = new HashMap<>();
-        ingredients.put(Alcohol.class, 40);
-        ingredients.put(Egg.class, 40);
-        ingredients.put(Flour.class, 20);
-        ingredients.put(Fruits.class, 25);
-        ingredients.put(Meat.class, 30);
-        ingredients.put(Milk.class, 20);
-        ingredients.put(Sugar.class, 25);
-        ingredients.put(Vegetables.class, 50);
-        ingredients.put(restaurant.food.ingredient.Water.class, Integer.MAX_VALUE);
+        for (Class<? extends Ingredient> ingredient : GlobalVar.INGREDIENTS) {
+            ingredients.put(ingredient, Random.random(40, 60));
+        }
+        ingredients.put(Water.class, Integer.MAX_VALUE);
 
         restaurant.setIngredients(ingredients);
     }
 
-    public void addNewCombinationSaleToRestaurant(Restaurant restaurantToAdd, CombinationSale saleToAdd) {
-        restaurantToAdd.getCombinationsSales().add(saleToAdd);
+    public void addNewCombinationSaleToRestaurant(Restaurant restaurant, CombinationSale saleToAdd) {
+        restaurant.getCombinationsSales().add(saleToAdd);
     }
 
     public void removeCombinationSaleFromRestaurant(Restaurant restaurantToRemove, CombinationSale saleToRemove) {
@@ -93,20 +57,17 @@ public class RestaurantService {
         }
     }
 
-    public void clearCombinationSaleListOfRestaurant(Restaurant restaurantToClear) {
-        restaurantToClear.getCombinationsSales().clear();
+    public void clearCombinationSaleListOfRestaurant(Restaurant restaurant) {
+        restaurant.getCombinationsSales().clear();
     }
 
     ///////////////////////////////
     //       ПРИГОТОВЛЕНИЕ       //
     ///////////////////////////////
 
-    public Dish tryToCookDish(Restaurant restaurant, Class<? extends Dish> dish)
-            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public Dish tryToCookDish(Restaurant restaurant, Dish dish) {
         Map<Class<? extends Ingredient>, Integer> availableIngredients = restaurant.getIngredients();
-        // так что тут у нас рефлексия ахахах ноканецта. Счетчик простреленных ног: 0
-        Dish dishToCook = dish.getConstructor().newInstance();
-        List<Pair<Class<? extends Ingredient>, Integer>> recipe = dishToCook.getRecipe();
+        List<Pair<Class<? extends Ingredient>, Integer>> recipe = dish.getRecipe();
 
         // а есть из чего готовить?
         for (Pair<Class<? extends Ingredient>, Integer> recipePart : recipe) {
@@ -119,7 +80,7 @@ public class RestaurantService {
             availableIngredients.put(recipePart.getFirst(), availableIngredients.get(recipePart.getFirst()) - recipePart.getSecond());
         }
 
-        return dishToCook;
+        return dish;
     }
 
 }

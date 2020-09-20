@@ -4,10 +4,7 @@ import restaurant.food.dish.Dish;
 import restaurant.food.ingredient.Ingredient;
 import util.Pair;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Restaurant {
     /*
@@ -16,13 +13,16 @@ public class Restaurant {
     ...features...
      */
 
-    // какие ингредиенты будет пытаться заказать ресторан для готовки блюд. НЕ СКЛАД, это список классов, как у меню
+    // какие ингредиенты будет пытаться заказать ресторан для готовки блюд. Это модифицированный склад
     private Map<Class<? extends Ingredient>, Integer> ingredients = new HashMap<>();
     // НЕ СКЛАД. Просто меню - доступные для покупки блюда(в виде классов)
     private List<Class<? extends Dish>> menu = new ArrayList<>();
     // комбинации еды, с которыми будет скидка. Это список комбинаций, состоящий из пары "Набор, который нужен
     // для скидки" и сама скидка
     private List<CombinationSale> combinationsSales = new ArrayList<>();
+    // жалкая попытка упростить алгоритм поиска доступной для клиента скидки. Если заказанное блюдо клиента относится
+    // к классу-триггеру, то все таки проверяем собрана ли вся коллекция блюд для скидки
+    private Set<Class<? extends Dish>> combinationSaleTriggers = new HashSet<>();
 
     public List<Class<? extends Dish>> getMenu() {
         return menu;
@@ -46,5 +46,13 @@ public class Restaurant {
 
     public void setIngredients(Map<Class<? extends Ingredient>, Integer> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Set<Class<? extends Dish>> getCombinationSaleTriggers() {
+        return combinationSaleTriggers;
+    }
+
+    public void setCombinationSaleTriggers(Set<Class<? extends Dish>> combinationSaleTriggers) {
+        this.combinationSaleTriggers = combinationSaleTriggers;
     }
 }

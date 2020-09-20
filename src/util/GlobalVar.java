@@ -1,19 +1,31 @@
 package util;
 
-import restaurant.Restaurant;
-import restaurant.RestaurantService;
-import restaurant.food.dish.DishService;
-import visitor.VisitorService;
+import restaurant.food.dish.Dish;
+import restaurant.food.dish.dishes.drinks.Drink;
+import restaurant.food.dish.dishes.drinks.alcoholic.Alcoholic;
+import restaurant.food.dish.dishes.drinks.alcoholic.Beer;
+import restaurant.food.dish.dishes.drinks.alcoholic.Champagne;
+import restaurant.food.dish.dishes.drinks.alcoholic.Vodka;
+import restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake;
+import restaurant.food.dish.dishes.drinks.non_alcoholic.Soda;
+import restaurant.food.dish.dishes.drinks.non_alcoholic.Water;
+import restaurant.food.dish.dishes.snacks.Bread;
+import restaurant.food.dish.dishes.snacks.Sandwich;
+import restaurant.food.dish.dishes.snacks.Snack;
+import restaurant.food.dish.dishes.soft_food.CutletsWithMashedPotato;
+import restaurant.food.dish.dishes.soft_food.SoftFood;
+import restaurant.food.dish.dishes.soft_food.Spaghetti;
+import restaurant.food.dish.dishes.soups.Borscht;
+import restaurant.food.dish.dishes.soups.FishSoup;
+import restaurant.food.dish.dishes.soups.Soup;
+import restaurant.food.dish.dishes.sweet_food.Cake;
+import restaurant.food.dish.dishes.sweet_food.Pancakes;
+import restaurant.food.dish.dishes.sweet_food.SweetFood;
+import restaurant.food.ingredient.*;
 
-public class GlobalVar {
-    public final static Restaurant RESTAURANT = new Restaurant();
+import java.util.*;
 
-    // TODO: DELIT DIS!!!!!!!!!! внести все это как локальные переменный в Main
-    public final static DishService DISH_SERVICE = new DishService();
-    public final static RestaurantService RESTAURANT_SERVICE = new RestaurantService();
-    public final static VisitorService VISITOR_SERVICE = new VisitorService();
-    // конец туду
-
+public abstract class GlobalVar {
     // по крайней мере нужно время на то чтобы официанту донести заказ
     public final static int COOK_TIME_MINIMUM = 1;
     // откуда я взял эти цифры? Очевидно, среднепотолочные значения
@@ -22,4 +34,59 @@ public class GlobalVar {
     public final static int COOK_TIME_LONG = 30;
     // не будем мучать клиентов ожиданиями выше этого значения. И так ждать абстрактный час, ужас!
     public final static int COOK_TIME_MAXIMUM = 60;
+
+    public final static List<Class<? extends Dish>> DISH_CATEGORIES = new ArrayList<>(Arrays.asList(
+            Alcoholic.class,
+            Drink.class,
+            Snack.class,
+            SoftFood.class,
+            Soup.class,
+            SweetFood.class
+    ));
+    public final static Map<Class<? extends Dish>, List<Class<? extends Dish>>> DISHES_BY_CATEGORY = Map.of(
+            Alcoholic.class, new ArrayList<>(Arrays.asList(
+                    Beer.class,
+                    Champagne.class,
+                    Vodka.class
+            )),
+            Drink.class, new ArrayList<>(Arrays.asList(
+                    Milkshake.class,
+                    Soda.class,
+                    Water.class
+            )),
+            Snack.class, new ArrayList<>(Arrays.asList(
+                    Bread.class,
+                    Sandwich.class
+            )),
+            SoftFood.class, new ArrayList<>(Arrays.asList(
+                    CutletsWithMashedPotato.class,
+                    Spaghetti.class
+            )),
+            Soup.class, new ArrayList<>(Arrays.asList(
+                    Borscht.class,
+                    FishSoup.class
+            )),
+            SweetFood.class, new ArrayList<>(Arrays.asList(
+                    Cake.class,
+                    Pancakes.class
+            ))
+
+    );
+    public final static List<Class<? extends Ingredient>> INGREDIENTS = new ArrayList<>(Arrays.asList(
+            Alcohol.class,
+            Egg.class,
+            Flour.class,
+            Fruits.class,
+            Meat.class,
+            Milk.class,
+            Sugar.class,
+            Vegetables.class,
+            restaurant.food.ingredient.Water.class
+    ));
+    public final static List<Class<? extends Dish>> ALL_AVAILABLE_DISHES = new ArrayList<>();
+    static {
+        for (Class<? extends Dish> category : DISH_CATEGORIES) {
+            ALL_AVAILABLE_DISHES.addAll(DISHES_BY_CATEGORY.get(category));
+        }
+    }
 }

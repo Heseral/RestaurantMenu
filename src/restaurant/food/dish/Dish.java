@@ -11,6 +11,8 @@ public abstract class Dish extends Food {
 
     // время, необходимое для приготовления блюда
     private int timeToCook;
+    // цена с учетом скидок
+    private int currentPrice;
     // ингредиенты, необходимые для приготовления блюда в виде: Список пар вида: Ингредиент-количество.
     // В первую очередь это создано для взаимодействиями с предпочтениями посетителей, а не для того, чтобы
     // готовить из этих ингредиентов. Не удивляйтесь, что, например, бутерброд создается из мяса, муки, яиц и воды.
@@ -29,6 +31,7 @@ public abstract class Dish extends Food {
     ) {
         setName(newName);
         setBasicPrice(newPrice);
+        setCurrentPrice(newPrice);
         setRecipe(newIngredients);
         setTimeToCook(newTimeToCook);
     }
@@ -47,6 +50,14 @@ public abstract class Dish extends Food {
 
     public void setTimeToCook(int timeToCook) {
         this.timeToCook = util.Misc.clamp(timeToCook, GlobalVar.COOK_TIME_MINIMUM, GlobalVar.COOK_TIME_MAXIMUM);
+    }
+
+    public int getCurrentPrice() {
+        return currentPrice;
+    }
+
+    public void setCurrentPrice(int affectedBySale) {
+        this.currentPrice = affectedBySale;
     }
 }
 

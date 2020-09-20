@@ -3,9 +3,10 @@ package restaurant;
 import restaurant.food.dish.Dish;
 import util.Pair;
 
-public class CombinationSale extends Pair<Class<? extends Dish>[], Integer> {
-    @SafeVarargs
-    public CombinationSale(Integer saleInPercents, Class<? extends Dish>... dishesCombination) {
+import java.util.List;
+
+public class CombinationSale extends Pair<List<Class<? extends Dish>>, Integer> {
+    public CombinationSale(Integer saleInPercents, List<Class<? extends Dish>> dishesCombination) {
         super(dishesCombination, saleInPercents);
     }
 }
