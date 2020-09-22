@@ -4,15 +4,13 @@ import restaurant.food.dish.Dish;
 import restaurant.food.ingredient.Ingredient;
 import restaurant.food.ingredient.Water;
 import util.GlobalVar;
-import util.Misc;
 import util.Pair;
 import util.Random;
 import visitor.Order;
+import visitor.Visitor;
+import visitor.VisitorService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RestaurantService {
 
@@ -75,43 +73,73 @@ public class RestaurantService {
     }
 
     ///////////////////////////////
-    //       ПРИГОТОВЛЕНИЕ       //
+    //     ОБРАБОТКА ЗАКАЗОВ     //
     ///////////////////////////////
 
-    // todo: переименовать "может ли выполнить заказ", не забирать тут ингредиенты, а поручить это обработчику событий
-    public Dish tryToCookDish(Restaurant restaurant, Dish dish) {
+    public boolean isRestaurantAvailableToCookDishRightNow(Restaurant restaurant, Dish dish) {
         Map<Class<? extends Ingredient>, Integer> availableIngredients = restaurant.getIngredients();
         List<Pair<Class<? extends Ingredient>, Integer>> recipe = dish.getRecipe();
 
         // а есть из чего готовить?
         for (Pair<Class<? extends Ingredient>, Integer> recipePart : recipe) {
             if (availableIngredients.get(recipePart.getFirst()) < recipePart.getSecond()) {
-                return null;
+                return false;
             }
         }
-        // да, есть, поэтому готовим и тратим ингредиенты
-        for (Pair<Class<? extends Ingredient>, Integer> recipePart : recipe) {
-            availableIngredients.put(recipePart.getFirst(), availableIngredients.get(recipePart.getFirst()) - recipePart.getSecond());
-        }
 
-        // TODO: !!!НЕ ЗАБИРАТЬ ИНГРЕДИЕНТЫ ЗДЕСЬ!!!, ПОРУЧИТЬ ЭТО ОБРАБОТЧИКУ СОБЫТИЙ
-        // todo: обработчик событий. В него добавлять заказы к приготовлению с информацией для кого заказ
-        // todo: использовать TimerTask & Timer
-
-        return dish;
+        return true;
     }
 
-    public void handleOrder(Restaurant restaurant, Order order) {
+    public void handleOrder(Restaurant restaurant, Order order, VisitorService visitorService) {
         for (Dish orderedDish : order.getOrderedDishes()) {
-            if (tryToCookDish(restaurant, orderedDish) != null) {
-                // todo: поручитьПопыткуГотовкиОбработчикуСобытий()
-            }
-            /*
-                feature: иначе спросить клиента готов ли он подождать.
-                    Если нет, возвращаем деньги за блюдо.
-                    Если да, поручить обработчику событий попытку приготовления блюда
-             */
+            handleOrderedDish(restaurant, orderedDish, order.getOrderedBy(), visitorService);
         }
     }
 
+    public void handleOrderedDish(Restaurant restaurant, Dish dish, Visitor visitor, VisitorService visitorService) {
+        if (isRestaurantAvailableToCookDishRightNow(restaurant, dish)) {
+            startCookingDish(restaurant, dish, visitor);
+            return;
+        }
+        if (visitorService.isReadyToWaitAdditionalTime(visitor, dish.getTimeToCook(), 1)) {
+            GlobalVar.TIMER.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    handleOrderedDish(restaurant, dish, visitor, visitorService);
+                }
+            },1000);
+            return;
+        }
+
+        handleForfeit(dish, visitor);
+    }
+
+    public void serveDish(Dish dish, Visitor visitor) {
+        // да, вместо имен будет выведена лапша из буковок и циферок. Так и задумывалось, ведь это лишь симуляция работы
+        // ресторана. В настоящем ресторане мы бы не делали глупый sout вывод в консольку.
+        System.out.println("      COMPLETED: Подано блюдо: " + dish + ". Заказчик: " + visitor + ".");
+    }
+
+    private void handleForfeit(Dish dish, Visitor visitor) {
+        System.out.println("      FORFEIT: Блюдо не подано: " + dish + " по причине нехватки ингредиентов. " + visitor + " больше не может ждать. Возмещено");
+        visitor.setCash(visitor.getCash() + dish.getCurrentPrice());
+    }
+
+    private void startCookingDish(Restaurant restaurant, Dish dish, Visitor visitor) {
+        for (Pair<Class<? extends Ingredient>, Integer> recipePart : dish.getRecipe()) {
+            restaurant.getIngredients().put(recipePart.getFirst(), restaurant.getIngredients().get(recipePart.getFirst()) - recipePart.getSecond());
+        }
+        GlobalVar.TIMER.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                onDishCooked(dish, visitor);
+
+                cancel();
+            }
+        }, dish.getTimeToCook() * 1000);
+    }
+
+    private void onDishCooked(Dish dish, Visitor visitor) {
+        serveDish(dish, visitor);
+    }
 }

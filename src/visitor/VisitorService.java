@@ -22,8 +22,7 @@ public class VisitorService {
      *
      * @param visitor посетитель, делающий заказ
      */
-    public boolean createAbsolutelyRandomOrder(Visitor visitor, RestaurantService restaurantService, Restaurant restaurant)
-            throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public boolean createAbsolutelyRandomOrder(Visitor visitor, RestaurantService restaurantService, Restaurant restaurant) {
         List<Class<? extends Dish>> desirableCategories = new ArrayList<>();
         for (Class<? extends Dish> category : GlobalVar.DISH_CATEGORIES) {
             // вероятность заказа этой категории 50%
@@ -50,13 +49,18 @@ public class VisitorService {
             List<Class<? extends Dish>> desirableCategories,
             RestaurantService restaurantService,
             Restaurant restaurant
-    ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        List<Dish> desirableDishes = new ArrayList<>();
+    ) {
+        List<Class<? extends Dish>> desirableDishes = new ArrayList<>();
         for (Class<? extends Dish> desirableCategory : desirableCategories) {
-            desirableDishes.add(Random.pick(GlobalVar.DISHES_BY_CATEGORY.get(desirableCategory)).getConstructor().newInstance());
+            desirableDishes.add(Random.pick(GlobalVar.DISHES_BY_CATEGORY.get(desirableCategory)));
         }
 
-        return createSpecifiedOrder(visitor, desirableDishes, restaurantService, restaurant);
+        try {
+            return createSpecifiedOrder(visitor, desirableDishes, restaurantService, restaurant);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -67,18 +71,34 @@ public class VisitorService {
      * @param restaurantService сервис ресторана, обслуживающий клиента
      * @param restaurant        ресторан, в котором происходит заказ
      */
-    public boolean createSpecifiedOrder(Visitor visitor, List<Dish> desirableDishes, RestaurantService restaurantService, Restaurant restaurant) {
+    public boolean createSpecifiedOrder(Visitor visitor, List<Class<? extends Dish>> desirableDishes, RestaurantService restaurantService, Restaurant restaurant)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         // нельзя создать пустой заказ
         if (desirableDishes.size() < 1) {
             return false;
         }
 
-        for (Dish desirableDish : desirableDishes) {
-            tryToAddDishToOrder(visitor, desirableDish, restaurantService, restaurant);
+        for (Class<? extends Dish> desirableDish : desirableDishes) {
+            tryToAddDishToOrder(visitor, desirableDish.getConstructor().newInstance(), restaurantService, restaurant);
         }
 
         makeOrder(visitor, restaurantService, restaurant);
         return true;
+    }
+
+    /**
+     * Создает заказ исходя из полей с предпочтениями посетителя
+     * @param visitor посетитель, делающий заказ
+     * @param restaurantService сервис ресторана, в котором происходит заказ
+     * @param restaurant ресторан, в коором происходит заказ
+     */
+    public boolean createOrder(Visitor visitor, RestaurantService restaurantService, Restaurant restaurant) {
+        try {
+            return createSpecifiedOrder(visitor, visitor.getWishes(), restaurantService, restaurant);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -89,7 +109,7 @@ public class VisitorService {
      * @param restaurant        ресторан, в котором был делается заказ
      */
     public void makeOrder(Visitor visitor, RestaurantService restaurantService, Restaurant restaurant) {
-        restaurantService.handleOrder(restaurant, visitor.getOrder());
+        restaurantService.handleOrder(restaurant, visitor.getOrder(), this);
     }
 
 
@@ -108,8 +128,7 @@ public class VisitorService {
             return false;
         }
         // может ли ресторан себе позволить блюдо?
-        Dish orderedDish = restaurantService.tryToCookDish(restaurant, dish);
-        if (orderedDish == null) {
+        if (!restaurantService.isRestaurantAvailableToCookDishRightNow(restaurant, dish)) {
             return false;
         }
 
@@ -154,6 +173,18 @@ public class VisitorService {
 
         order.getOrderedDishes().add(dish);
         order.setTotalPrice(order.getTotalPrice() + dish.getBasicPrice());
+    }
+
+    /**
+     * Спрашивает у клиента, готов ли тот подождать дополнительное время для чего то. например, в случае, если блюдо
+     * не удается приготовить в срок, клиент может подождать еще немнеого времени
+     * @param visitor посетитель, у которого "задают вопрос"
+     * @param timeFrom время, которое клиент уже готов был потратить
+     * @param additionalTime дополнительное время поверх timeFrom
+     * @return true, если клиент соглашается подождать еще additionalTime, false иначе
+     */
+    public boolean isReadyToWaitAdditionalTime(Visitor visitor, int timeFrom, int additionalTime) {
+        return timeFrom + additionalTime <= visitor.getFreeTime();
     }
 
     /**

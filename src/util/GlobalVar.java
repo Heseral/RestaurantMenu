@@ -23,20 +23,22 @@ import restaurant.food.dish.dishes.sweet_food.Pancakes;
 import restaurant.food.dish.dishes.sweet_food.SweetFood;
 import restaurant.food.ingredient.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class GlobalVar {
+    // используется для тестов и симуляции работы ресторана
+    public final static Timer TIMER = new Timer();
+    // используется для тестов и симуляции работы ресторана
+    public static int time = 0;
+
     // по крайней мере нужно время на то чтобы официанту донести заказ
     public final static int COOK_TIME_MINIMUM = 1;
     // откуда я взял эти цифры? Очевидно, среднепотолочные значения
-    public final static int COOK_TIME_LOW = 5;
-    public final static int COOK_TIME_DEFAULT = 15;
-    public final static int COOK_TIME_LONG = 30;
+    public final static int COOK_TIME_LOW = 4;
+    public final static int COOK_TIME_DEFAULT = 16;
+    public final static int COOK_TIME_LONG = 32;
     // не будем мучать клиентов ожиданиями выше этого значения. И так ждать абстрактный час, ужас!
-    public final static int COOK_TIME_MAXIMUM = 60;
+    public final static int COOK_TIME_MAXIMUM = 64;
 
     public final static List<Class<? extends Dish>> DISH_CATEGORIES = new ArrayList<>(Arrays.asList(
             Alcoholic.class,

@@ -1,11 +1,10 @@
 import restaurant.Restaurant;
 import restaurant.RestaurantService;
-import util.Random;
+import util.GlobalVar;
 import visitor.Visitor;
 import visitor.VisitorService;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Timer;
+import java.util.Date;
 import java.util.TimerTask;
 
 /*
@@ -27,28 +26,26 @@ public class Main {
 
         VisitorService visitorService = new VisitorService();
 
-
-        TimerTask newVisitor = new TimerTask() {
+        GlobalVar.TIMER.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println(">>>>> " + GlobalVar.time++);
+            }
+        }, 0, 1000);
+        GlobalVar.TIMER.schedule(new TimerTask() {
             @Override
             public void run() {
                 Visitor visitor = new Visitor();
-                try {
-                    visitorService.createAbsolutelyRandomOrder(visitor, restaurantService , restaurant);
-                } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+                visitorService.createAbsolutelyRandomOrder(visitor, restaurantService, restaurant);
+                System.out.println("      NEW ORDER: " + visitor + " сделал новый заказ.");
             }
-        };
-        TimerTask ingredientsResupply = new TimerTask() {
+        }, 0, 15 * 1000);
+        GlobalVar.TIMER.schedule(new TimerTask() {
             @Override
             public void run() {
                 restaurantService.resupplyIngredientsRandomly(restaurant);
+                System.out.println("      RESUPPLY: новые ингредиенты были поставлены в ресторан.");
             }
-        };
-        Timer visitorTimer = new Timer();
-        visitorTimer.schedule(newVisitor, 0, 15 * 1000);
-
-        Timer ingredientsResupplyTimer = new Timer();
-        ingredientsResupplyTimer.schedule(ingredientsResupply, 0, 120 * 1000);
+        }, 0, 120 * 1000);
     }
 }

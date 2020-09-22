@@ -7,7 +7,7 @@ import util.Pair;
 
 import java.util.List;
 
-public abstract class Dish extends Food {
+public abstract class Dish extends Food{
 
     // время, необходимое для приготовления блюда
     private int timeToCook;

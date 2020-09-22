@@ -54,4 +54,5 @@ public class Restaurant {
     public void setCombinationSaleTriggers(Set<Class<? extends Dish>> combinationSaleTriggers) {
         this.combinationSaleTriggers = combinationSaleTriggers;
     }
+
 }

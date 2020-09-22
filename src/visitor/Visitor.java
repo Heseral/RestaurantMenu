@@ -2,8 +2,11 @@ package visitor;
 
 import restaurant.food.dish.Dish;
 import restaurant.food.ingredient.Ingredient;
+import util.Misc;
+import util.Random;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Visitor {
@@ -17,6 +20,23 @@ public class Visitor {
     private int cash;
     // уже сделанный и ожидаемый заказ
     private Order order = null;
+    // имя клиента
+    private String name = "Нулл Андефайнед Нуллович";
+
+    public Visitor(List<Class<? extends Ingredient>> restrictions, List<Class<? extends Dish>> wishes, int freeTime, int cash) {
+        setRestrictions(restrictions);
+        setWishes(wishes);
+        setFreeTime(freeTime);
+        setCash(cash);
+        setOrder(new Order(this));
+    }
+
+    public Visitor() {
+        setOrder(new Order(this));
+        setCash(Random.random(300, 10000));
+        setFreeTime(Random.random(5, 120));
+        setWishes(new ArrayList<>(Arrays.asList()));
+    }
 
     public List<Class<? extends Dish>> getWishes() {
         return wishes;
@@ -56,5 +76,13 @@ public class Visitor {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

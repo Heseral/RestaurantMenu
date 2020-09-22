@@ -10,6 +10,12 @@ public class Order {
     private List<Dish> orderedDishes = new ArrayList<>();
     // во сколько обойдется заказ
     private int totalPrice = 0;
+    // кто сделал заказ
+    private Visitor orderedBy = null;
+
+    public Order(Visitor orderedBy) {
+        setOrderedBy(orderedBy);
+    }
 
     public List<Dish> getOrderedDishes() {
         return orderedDishes;
@@ -25,5 +31,13 @@ public class Order {
 
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public Visitor getOrderedBy() {
+        return orderedBy;
+    }
+
+    public void setOrderedBy(Visitor orderedBy) {
+        this.orderedBy = orderedBy;
     }
 }
