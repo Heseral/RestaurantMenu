@@ -8,6 +8,8 @@ import java.util.List;
 public class Order {
     // список успешно заказанных блюд
     private List<Dish> orderedDishes = new ArrayList<>();
+    // список приготовленных блюд из списка заказанных блюд
+    private List<Dish> servedDishes = new ArrayList<>();
     // во сколько обойдется заказ
     private int totalPrice = 0;
     // кто сделал заказ
@@ -39,5 +41,13 @@ public class Order {
 
     public void setOrderedBy(Visitor orderedBy) {
         this.orderedBy = orderedBy;
+    }
+
+    public List<Dish> getServedDishes() {
+        return servedDishes;
+    }
+
+    public void setServedDishes(List<Dish> servedDishes) {
+        this.servedDishes = servedDishes;
     }
 }

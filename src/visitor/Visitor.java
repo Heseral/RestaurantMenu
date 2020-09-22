@@ -35,7 +35,6 @@ public class Visitor {
         setOrder(new Order(this));
         setCash(Random.random(300, 10000));
         setFreeTime(Random.random(5, 120));
-        setWishes(new ArrayList<>(Arrays.asList()));
     }
 
     public List<Class<? extends Dish>> getWishes() {

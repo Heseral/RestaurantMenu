@@ -46,6 +46,6 @@ public class Main {
                 restaurantService.resupplyIngredientsRandomly(restaurant);
                 System.out.println("      RESUPPLY: новые ингредиенты были поставлены в ресторан.");
             }
-        }, 0, 120 * 1000);
+        }, 120 * 1000, 120 * 1000);
     }
 }
