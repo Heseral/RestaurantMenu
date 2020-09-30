@@ -33,6 +33,7 @@ public class VisitorService {
                 }
             }
         }
+        visitor.setWishes(desirableCategories);
 
         return createPartiallyRandomOrder(visitor, desirableCategories, restaurantService, restaurant);
     }
@@ -87,18 +88,15 @@ public class VisitorService {
     }
 
     /**
-     * Создает заказ исходя из полей с предпочтениями посетителя
+     * Создает заказ исходя из предпочтений wishes посетителя. Блюда из категорий выбираются случайно в
+     * методе createPartiallyRandomOrder()
      * @param visitor посетитель, делающий заказ
-     * @param restaurantService сервис ресторана, в котором происходит заказ
-     * @param restaurant ресторан, в коором происходит заказ
+     * @param restaurantService сервис ресторана
+     * @param restaurant ресторан, в котором происходит заказ
+     * @return true, если посетитель сделал заказ, иначе false
      */
     public boolean createOrder(Visitor visitor, RestaurantService restaurantService, Restaurant restaurant) {
-        try {
-            return createSpecifiedOrder(visitor, visitor.getWishes(), restaurantService, restaurant);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            e.printStackTrace();
-        }
-        return false;
+        return createPartiallyRandomOrder(visitor, visitor.getWishes(), restaurantService, restaurant);
     }
 
     /**
@@ -195,7 +193,7 @@ public class VisitorService {
      * @param restaurant ресторан, в котором происходит заказ
      * @return false, если не найдено скидок; true, если найдена хоть одна
      */
-    private boolean handleCombinationSalesInOrder(Visitor visitor, Restaurant restaurant) {
+    public boolean handleCombinationSalesInOrder(Visitor visitor, Restaurant restaurant) {
         Order order = visitor.getOrder();
         List<CombinationSale> combinationSales = restaurant.getCombinationsSales();
 

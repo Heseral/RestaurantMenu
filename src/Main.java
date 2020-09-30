@@ -4,7 +4,6 @@ import util.GlobalVar;
 import visitor.Visitor;
 import visitor.VisitorService;
 
-import java.util.Date;
 import java.util.TimerTask;
 
 /*
@@ -31,7 +30,7 @@ public class Main {
             public void run() {
                 System.out.println(">>>>> " + GlobalVar.time++);
             }
-        }, 0, 1000);
+        }, 0, GlobalVar.SECOND);
         GlobalVar.TIMER.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -39,13 +38,13 @@ public class Main {
                 visitorService.createAbsolutelyRandomOrder(visitor, restaurantService, restaurant);
                 System.out.println("      NEW ORDER: " + visitor + " сделал новый заказ.");
             }
-        }, 0, 15 * 1000);
+        }, 0, 15 * GlobalVar.SECOND);
         GlobalVar.TIMER.schedule(new TimerTask() {
             @Override
             public void run() {
                 restaurantService.resupplyIngredientsRandomly(restaurant);
                 System.out.println("      RESUPPLY: новые ингредиенты были поставлены в ресторан.");
             }
-        }, 120 * 1000, 120 * 1000);
+        }, 120 * GlobalVar.SECOND, 120 * GlobalVar.SECOND);
     }
 }

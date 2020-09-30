@@ -28,6 +28,8 @@ import java.util.*;
 public abstract class GlobalVar {
     // используется для тестов и симуляции работы ресторана
     public final static Timer TIMER = new Timer();
+    // секунда в миллисекундах
+    public final static int SECOND = 1000;
     // используется для тестов и симуляции работы ресторана
     public static int time = 0;
 

@@ -102,6 +102,7 @@ public class RestaurantService {
      * @param visitorService сервис посетителя
      */
     public void handleOrder(Restaurant restaurant, Order order, VisitorService visitorService) {
+        while (visitorService.handleCombinationSalesInOrder(order.getOrderedBy(), restaurant)) {}
         order.getOrderedBy().setCash(order.getOrderedBy().getCash() - order.getTotalPrice());
         for (Dish orderedDish : order.getOrderedDishes()) {
             handleOrderedDish(restaurant, orderedDish, order.getOrderedBy(), visitorService);
@@ -128,7 +129,7 @@ public class RestaurantService {
                 public void run() {
                     handleOrderedDish(restaurant, dish, visitor, visitorService);
                 }
-            },1000);
+            },GlobalVar.SECOND);
             return;
         }
 
@@ -173,7 +174,7 @@ public class RestaurantService {
 
                 cancel();
             }
-        }, dish.getTimeToCook() * 1000);
+        }, dish.getTimeToCook() * GlobalVar.SECOND);
     }
 
     /**

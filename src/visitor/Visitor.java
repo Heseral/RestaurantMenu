@@ -2,11 +2,9 @@ package visitor;
 
 import restaurant.food.dish.Dish;
 import restaurant.food.ingredient.Ingredient;
-import util.Misc;
 import util.Random;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Visitor {
