@@ -2,6 +2,7 @@ package visitor;
 
 import restaurant.food.dish.Dish;
 import restaurant.food.ingredient.Ingredient;
+import util.GlobalVar;
 import util.Random;
 
 import java.util.ArrayList;
@@ -9,9 +10,9 @@ import java.util.List;
 
 public class Visitor {
     // пожелания посетителя в виде списка классов-категорий блюд
-    private List<Class<? extends Dish>> wishes;
+    private transient List<Class<? extends Dish>> wishes;
     // ограничения в блюдах в виде классов ингредиентов блюд
-    private List<Class<? extends Ingredient>> restrictions = new ArrayList<>();
+    private transient List<Class<? extends Ingredient>> restrictions = new ArrayList<>();
     // свободное время, которое посетитель готов подождать до приготовления блюда
     private int freeTime;
     // деньги посетителя
@@ -33,6 +34,17 @@ public class Visitor {
         setOrder(new Order(this));
         setCash(Random.random(300, 10000));
         setFreeTime(Random.random(5, 120));
+        List<Class<? extends Dish>> desirableCategories = new ArrayList<>();
+        for (Class<? extends Dish> category : GlobalVar.DISH_CATEGORIES) {
+            // вероятность заказа этой категории 50%
+            if (Random.prob(50)) {
+                int amount = Random.random(1, 3);
+                for (int i = 0; i < amount; i++) {
+                    desirableCategories.add(category);
+                }
+            }
+        }
+        setWishes(desirableCategories);
     }
 
     public List<Class<? extends Dish>> getWishes() {

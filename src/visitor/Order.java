@@ -1,6 +1,7 @@
 package visitor;
 
 import restaurant.food.dish.Dish;
+import util.GlobalVar;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,17 @@
+import com.google.gson.Gson;
 import restaurant.Restaurant;
 import restaurant.RestaurantService;
 import util.GlobalVar;
 import visitor.Visitor;
 import visitor.VisitorService;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.TimerTask;
 
 /*
@@ -35,7 +43,7 @@ public class Main {
             @Override
             public void run() {
                 Visitor visitor = new Visitor();
-                visitorService.createAbsolutelyRandomOrder(visitor, restaurantService, restaurant);
+                visitorService.createPartiallyRandomOrder(visitor, visitor.getWishes(), restaurantService, restaurant);
                 System.out.println("      NEW ORDER: " + visitor + " сделал новый заказ.");
             }
         }, 0, 15 * GlobalVar.SECOND);
@@ -46,5 +54,29 @@ public class Main {
                 System.out.println("      RESUPPLY: новые ингредиенты были поставлены в ресторан.");
             }
         }, 120 * GlobalVar.SECOND, 120 * GlobalVar.SECOND);
+
+
+
+        JFrame mainFrame = new JFrame();
+        JPanel panel = new JPanel();
+        Button serializeButton = new Button("Сериализовать");
+        serializeButton.addActionListener(actionEvent -> {
+            try {
+                GlobalVar.GSON.toJson(restaurant, new FileWriter("json.json"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        panel.add(serializeButton);
+        Button deserializeButton = new Button("Десеарилозвать");
+        deserializeButton.addActionListener(actionEvent -> {
+
+        });
+        panel.add(deserializeButton);
+
+        mainFrame.add(panel);
+        mainFrame.setSize(300, 100);
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainFrame.setVisible(true);
     }
 }

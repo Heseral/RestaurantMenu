@@ -1,5 +1,7 @@
 package util;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import restaurant.food.dish.Dish;
 import restaurant.food.dish.dishes.drinks.Drink;
 import restaurant.food.dish.dishes.drinks.alcoholic.Alcoholic;
@@ -26,6 +28,11 @@ import restaurant.food.ingredient.*;
 import java.util.*;
 
 public abstract class GlobalVar {
+    // пока через глобальную переменную. Это сериализатор и десериализатор
+    public final static Gson GSON = new GsonBuilder()
+            .registerTypeAdapter(Class.class, new ClassTypeAdapter())
+            .setPrettyPrinting()
+            .create();
     // используется для тестов и симуляции работы ресторана
     public final static Timer TIMER = new Timer();
     // секунда в миллисекундах
