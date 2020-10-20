@@ -13,7 +13,7 @@ public class Order {
     // во сколько обойдется заказ
     private int totalPrice = 0;
     // кто сделал заказ
-    private Visitor orderedBy = null;
+    private transient Visitor orderedBy = null; // TODO: при десериализации засетать эту переменную используя виситора
 
     public Order(Visitor orderedBy) {
         setOrderedBy(orderedBy);

@@ -1,14 +1,17 @@
 import restaurant.Restaurant;
 import restaurant.RestaurantService;
 import util.GlobalVar;
-import visitor.Visitor;
+import util.timer_tasks.TimerTaskResupply;
+import util.timer_tasks.TimerTaskTime;
+import util.timer_tasks.TimerTaskVisitor;
 import visitor.VisitorService;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.TimerTask;
+
+import static util.GlobalVar.timeWrapper;
 
 /*
     9. Меню ресторана, скидки. Дано меню ресторана, которое содержит набор
@@ -29,29 +32,30 @@ public class Main {
 
         VisitorService visitorService = new VisitorService();
 
-        GlobalVar.TIMER.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println(">>>>> " + GlobalVar.time++);
-            }
-        }, 0, GlobalVar.SECOND);
-        GlobalVar.TIMER.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Visitor visitor = new Visitor();
-                visitorService.createPartiallyRandomOrder(visitor, visitor.getWishes(), restaurantService, restaurant);
-                System.out.println("      NEW ORDER: " + visitor + " сделал новый заказ.");
-            }
-        }, 0, 15 * GlobalVar.SECOND);
-        GlobalVar.TIMER.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                restaurantService.resupplyIngredientsRandomly(restaurant);
-                System.out.println("      RESUPPLY: новые ингредиенты были поставлены в ресторан.");
-            }
-        }, 120 * GlobalVar.SECOND, 120 * GlobalVar.SECOND);
+        TimerTaskTime timerTaskTime = new TimerTaskTime(
+                0,
+                GlobalVar.SECOND
+        );
+        TimerTaskVisitor timerTaskVisitor = new TimerTaskVisitor(
+                0,
+                15 * GlobalVar.SECOND,
+                restaurantService,
+                visitorService,
+                restaurant
+        );
+        TimerTaskResupply timerTaskResupply = new TimerTaskResupply(
+                120 * GlobalVar.SECOND,
+                120 * GlobalVar.SECOND,
+                restaurantService,
+                restaurant
+        );
 
 
+        GlobalVar.TIMER.schedule(timerTaskTime, timerTaskTime.getDelayMillis(), timerTaskTime.getPeriodMillis());
+        GlobalVar.TIMER.schedule(timerTaskVisitor, timerTaskVisitor.getDelayMillis(), timerTaskVisitor.getPeriodMillis());
+        GlobalVar.TIMER.schedule(timerTaskResupply, timerTaskResupply.getDelayMillis(), timerTaskResupply.getPeriodMillis());
+
+        // TODO: десеарилацзия? Кажется уже можно
 
         JFrame mainFrame = new JFrame();
         JPanel panel = new JPanel();
@@ -60,7 +64,12 @@ public class Main {
             try {
                 FileWriter fileWriter = new FileWriter("json.json");
                 GlobalVar.GSON.toJson(restaurant, fileWriter);
-                GlobalVar.GSON.toJson(GlobalVar.time, fileWriter);
+                GlobalVar.GSON.toJson(timeWrapper, fileWriter);
+                GlobalVar.GSON.toJson(timerTaskTime, fileWriter);
+                GlobalVar.GSON.toJson(timerTaskVisitor, fileWriter);
+                GlobalVar.GSON.toJson(timerTaskResupply, fileWriter);
+                GlobalVar.GSON.toJson(GlobalVar.COOKING_LIST, fileWriter);
+                GlobalVar.GSON.toJson(GlobalVar.WAITING_LIST, fileWriter);
                 fileWriter.flush();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -24,10 +24,18 @@ import restaurant.food.dish.dishes.sweet_food.Cake;
 import restaurant.food.dish.dishes.sweet_food.Pancakes;
 import restaurant.food.dish.dishes.sweet_food.SweetFood;
 import restaurant.food.ingredient.*;
+import util.timer_tasks.TimerTaskCooking;
+import util.timer_tasks.TimerTaskWaiting;
 
 import java.util.*;
 
 public abstract class GlobalVar {
+    // обертка для времени. Имеет только дно поле - время в секундах.
+    public static TimeWrapper timeWrapper = new TimeWrapper();
+    // хранилище всех отсроченных, но еще, возможно, выполнимых заказов
+    public final static List<TimerTaskWaiting> WAITING_LIST = new ArrayList<>();
+    // хранилище всех заказов, которые сейчас готовят
+    public final static List<TimerTaskCooking> COOKING_LIST = new ArrayList<>();
     // пока через глобальную переменную. Это сериализатор и десериализатор
     public final static Gson GSON = new GsonBuilder()
             .registerTypeAdapter(Class.class, new ClassTypeAdapter())
@@ -37,8 +45,6 @@ public abstract class GlobalVar {
     public final static Timer TIMER = new Timer();
     // секунда в миллисекундах
     public final static int SECOND = 1000;
-    // используется для тестов и симуляции работы ресторана
-    public static int time = 0;
 
     // по крайней мере нужно время на то чтобы официанту донести заказ
     public final static int COOK_TIME_MINIMUM = 1;

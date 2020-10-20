@@ -6,6 +6,8 @@ import restaurant.food.ingredient.Water;
 import util.GlobalVar;
 import util.Pair;
 import util.Random;
+import util.timer_tasks.TimerTaskCooking;
+import util.timer_tasks.TimerTaskWaiting;
 import visitor.Order;
 import visitor.Visitor;
 import visitor.VisitorService;
@@ -125,12 +127,16 @@ public class RestaurantService {
             return;
         }
         if (visitorService.isReadyToWaitAdditionalTime(visitor, dish.getTimeToCook(), 1)) {
-            GlobalVar.TIMER.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    handleOrderedDish(restaurant, dish, visitor, visitorService);
-                }
-            },GlobalVar.SECOND);
+            TimerTaskWaiting timerTaskWaiting = new TimerTaskWaiting(
+                    GlobalVar.SECOND,
+                    -1,
+                    restaurant,
+                    visitor,
+                    this,
+                    visitorService,
+                    dish
+            );
+            GlobalVar.TIMER.schedule(timerTaskWaiting, timerTaskWaiting.getDelayMillis());
             return;
         }
 
@@ -168,14 +174,14 @@ public class RestaurantService {
         for (Pair<Class<? extends Ingredient>, Integer> recipePart : dish.getRecipe()) {
             restaurant.getIngredients().put(recipePart.getFirst(), restaurant.getIngredients().get(recipePart.getFirst()) - recipePart.getSecond());
         }
-        GlobalVar.TIMER.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                onDishCooked(dish, visitor);
-
-                cancel();
-            }
-        }, dish.getTimeToCook() * GlobalVar.SECOND);
+        TimerTaskCooking timerTaskCooking = new TimerTaskCooking(
+                dish.getTimeToCook() * GlobalVar.SECOND,
+                -1,
+                dish,
+                visitor,
+                this
+                );
+        GlobalVar.TIMER.schedule(timerTaskCooking, timerTaskCooking.getDelayMillis());
     }
 
     /**
@@ -183,7 +189,7 @@ public class RestaurantService {
      * @param dish приготовленное блюдо
      * @param visitor посетитель, заказавший блюдо
      */
-    private void onDishCooked(Dish dish, Visitor visitor) {
+    public void onDishCooked(Dish dish, Visitor visitor) {
         serveDish(dish, visitor);
     }
 }
