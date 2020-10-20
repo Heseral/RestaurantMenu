@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5f0f73b-bc7d-4e58-bef1-6770fd978eee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Jackson.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/ClassTypeAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Restoraunt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Restoraunt.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json.json" beforeDir="false" afterPath="$PROJECT_DIR$/json.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/restaurant/food/dish/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/dish/Dish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/GlobalVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/GlobalVar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visitor/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visitor/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visitor/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visitor/Visitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restaurant/RestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/RestaurantService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -158,5 +152,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600591441656" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="restaurant" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

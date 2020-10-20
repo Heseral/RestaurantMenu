@@ -43,9 +43,10 @@ public class RestaurantService {
     public void setDefaultRestaurantCombinationsSales(Restaurant restaurant) {
         int amountOfCombinationSales = Random.random(5, 15);
         int amountOfDishesForCombinationSale;
-        List<Class<? extends Dish>> combinationSaleDishes = new ArrayList<>();
+        List<Class<? extends Dish>> combinationSaleDishes;
         Class<? extends Dish> dishInCombinationSale;
         for (int i = 0; i < amountOfCombinationSales; i++) {
+            combinationSaleDishes = new ArrayList<>();
             amountOfDishesForCombinationSale = Random.random(2, 5);
             for (int j = 0; j < amountOfDishesForCombinationSale; j++) {
                 dishInCombinationSale = Random.pick(GlobalVar.ALL_AVAILABLE_DISHES);

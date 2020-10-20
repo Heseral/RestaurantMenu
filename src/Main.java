@@ -62,7 +62,10 @@ public class Main {
         Button serializeButton = new Button("Сериализовать");
         serializeButton.addActionListener(actionEvent -> {
             try {
-                GlobalVar.GSON.toJson(restaurant, new FileWriter("json.json"));
+                FileWriter fileWriter = new FileWriter("json.json");
+                GlobalVar.GSON.toJson(restaurant, fileWriter);
+                GlobalVar.GSON.toJson(GlobalVar.time, fileWriter);
+                fileWriter.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
