@@ -1,4 +1,3 @@
-import com.google.gson.Gson;
 import restaurant.Restaurant;
 import restaurant.RestaurantService;
 import util.GlobalVar;
@@ -7,11 +6,8 @@ import visitor.VisitorService;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.TimerTask;
 
 /*
