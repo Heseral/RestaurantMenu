@@ -7,8 +7,8 @@ public class TimerTaskResupply extends ModifiedTimerTask {
     private RestaurantService restaurantService;
     private Restaurant restaurant;
 
-    public TimerTaskResupply(long delay, long period, RestaurantService restaurantService, Restaurant restaurant) {
-        super(delay, period);
+    public TimerTaskResupply(long period, RestaurantService restaurantService, Restaurant restaurant) {
+        super(period);
         setRestaurantService(restaurantService);
         setRestaurant(restaurant);
     }

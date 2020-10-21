@@ -2,20 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5f0f73b-bc7d-4e58-bef1-6770fd978eee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/util/TimeWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/timer_tasks/ModifiedTimerTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskCooking.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskResupply.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskTime.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskVisitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskWaiting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/json.json" beforeDir="false" afterPath="$PROJECT_DIR$/json.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/restaurant/RestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/RestaurantService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util/GlobalVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/GlobalVar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visitor/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visitor/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/timer_tasks/ModifiedTimerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/timer_tasks/ModifiedTimerTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskCooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskCooking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskResupply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskResupply.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskWaiting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskWaiting.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +51,18 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -65,18 +76,6 @@
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -182,6 +181,35 @@
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600591441656" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="restaurant" />

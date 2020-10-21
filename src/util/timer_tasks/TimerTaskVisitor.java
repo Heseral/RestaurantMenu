@@ -10,8 +10,8 @@ public class TimerTaskVisitor extends ModifiedTimerTask {
     private VisitorService visitorService;
     private Restaurant restaurant;
 
-    public TimerTaskVisitor(long delay, long period, RestaurantService restaurantService, VisitorService visitorService, Restaurant restaurant) {
-        super(delay, period);
+    public TimerTaskVisitor(long period, RestaurantService restaurantService, VisitorService visitorService, Restaurant restaurant) {
+        super(period);
         setRestaurantService(restaurantService);
         setVisitorService(visitorService);
         setRestaurant(restaurant);

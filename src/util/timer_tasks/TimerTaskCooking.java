@@ -10,18 +10,18 @@ public class TimerTaskCooking extends ModifiedTimerTask {
     private Visitor visitor;
     private RestaurantService restaurantService;
 
-    public TimerTaskCooking(long delayMillis, long periodMillis, Dish dish, Visitor visitor, RestaurantService restaurantService) {
-        super(delayMillis, periodMillis);
+    public TimerTaskCooking(Dish dish, Visitor visitor, RestaurantService restaurantService) {
+        super(-1);
         setDish(dish);
         setVisitor(visitor);
         setRestaurantService(restaurantService);
-        GlobalVar.COOKING_LIST.add(this);
+        GlobalVar.cookingList.add(this);
     }
 
     @Override
     public void run() {
         getRestaurantService().onDishCooked(getDish(), getVisitor());
-        GlobalVar.COOKING_LIST.remove(this);
+        GlobalVar.cookingList.remove(this);
         cancel();
     }
 

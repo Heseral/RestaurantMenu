@@ -15,27 +15,25 @@ public class TimerTaskWaiting extends ModifiedTimerTask {
     private Dish dish;
 
     public TimerTaskWaiting(
-            long delayMillis,
-            long periodMillis,
             Restaurant restaurant,
             Visitor visitor,
             RestaurantService restaurantService,
             VisitorService visitorService,
             Dish dish
     ) {
-        super(delayMillis, periodMillis);
+        super(-1);
         setRestaurant(restaurant);
         setVisitorService(visitorService);
         setVisitor(visitor);
         setRestaurantService(restaurantService);
         setDish(dish);
-        GlobalVar.WAITING_LIST.add(this);
+        GlobalVar.waitingList.add(this);
     }
 
     @Override
     public void run() {
         getRestaurantService().handleOrderedDish(getRestaurant(), getDish(), getVisitor(), getVisitorService());
-        GlobalVar.WAITING_LIST.remove(this);
+        GlobalVar.waitingList.remove(this);
         cancel();
     }
 

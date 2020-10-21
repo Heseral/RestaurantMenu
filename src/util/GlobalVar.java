@@ -33,16 +33,16 @@ public abstract class GlobalVar {
     // обертка для времени. Имеет только дно поле - время в секундах.
     public static TimeWrapper timeWrapper = new TimeWrapper();
     // хранилище всех отсроченных, но еще, возможно, выполнимых заказов
-    public final static List<TimerTaskWaiting> WAITING_LIST = new ArrayList<>();
+    public static ArrayList<TimerTaskWaiting> waitingList = new ArrayList<>();
     // хранилище всех заказов, которые сейчас готовят
-    public final static List<TimerTaskCooking> COOKING_LIST = new ArrayList<>();
+    public static ArrayList<TimerTaskCooking> cookingList = new ArrayList<>();
     // пока через глобальную переменную. Это сериализатор и десериализатор
     public final static Gson GSON = new GsonBuilder()
             .registerTypeAdapter(Class.class, new ClassTypeAdapter())
             .setPrettyPrinting()
             .create();
     // используется для тестов и симуляции работы ресторана
-    public final static Timer TIMER = new Timer();
+    public static Timer timer = new Timer();
     // секунда в миллисекундах
     public final static int SECOND = 1000;
 

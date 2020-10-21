@@ -128,15 +128,13 @@ public class RestaurantService {
         }
         if (visitorService.isReadyToWaitAdditionalTime(visitor, dish.getTimeToCook(), 1)) {
             TimerTaskWaiting timerTaskWaiting = new TimerTaskWaiting(
-                    GlobalVar.SECOND,
-                    -1,
                     restaurant,
                     visitor,
                     this,
                     visitorService,
                     dish
             );
-            GlobalVar.TIMER.schedule(timerTaskWaiting, timerTaskWaiting.getDelayMillis());
+            GlobalVar.timer.schedule(timerTaskWaiting, GlobalVar.SECOND);
             return;
         }
 
@@ -175,13 +173,11 @@ public class RestaurantService {
             restaurant.getIngredients().put(recipePart.getFirst(), restaurant.getIngredients().get(recipePart.getFirst()) - recipePart.getSecond());
         }
         TimerTaskCooking timerTaskCooking = new TimerTaskCooking(
-                dish.getTimeToCook() * GlobalVar.SECOND,
-                -1,
                 dish,
                 visitor,
                 this
                 );
-        GlobalVar.TIMER.schedule(timerTaskCooking, timerTaskCooking.getDelayMillis());
+        GlobalVar.timer.schedule(timerTaskCooking, dish.getTimeToCook() * GlobalVar.SECOND);
     }
 
     /**
