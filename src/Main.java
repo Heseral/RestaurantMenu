@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static util.GlobalVar.timeWrapper;
-
 /*
     9. Меню ресторана, скидки. Дано меню ресторана, которое содержит набор
     различных блюд - напитки, салаты, закуски и т.д. Каждое блюдо имеет
@@ -39,107 +37,95 @@ public class Main {
         VisitorService visitorService = new VisitorService();
 
         AtomicReference<TimerTaskTime> timerTaskTime = new AtomicReference<>(new TimerTaskTime(
-                GlobalVar.SECOND
-        ));
-        AtomicReference<TimerTaskVisitor> timerTaskVisitor = new AtomicReference<>(new TimerTaskVisitor(
-                15 * GlobalVar.SECOND,
+                GlobalVar.SECOND,
+                restaurant.get(),
                 restaurantService,
-                visitorService,
-                restaurant.get()
-        ));
-        AtomicReference<TimerTaskResupply> timerTaskResupply = new AtomicReference<>(new TimerTaskResupply(
-                120 * GlobalVar.SECOND,
-                restaurantService,
-                restaurant.get()
+                visitorService
         ));
 
-
-        GlobalVar.timer.schedule(timerTaskTime.get(), timerTaskTime.get().getLaunchTimeMillis(), timerTaskTime.get().getPeriodMillis());
-        GlobalVar.timer.schedule(timerTaskVisitor.get(), timerTaskVisitor.get().getLaunchTimeMillis(), timerTaskVisitor.get().getPeriodMillis());
-        GlobalVar.timer.schedule(timerTaskResupply.get(), timerTaskResupply.get().getLaunchTimeMillis(), timerTaskResupply.get().getPeriodMillis());
+        GlobalVar.timer.scheduleAtFixedRate(timerTaskTime.get(), timerTaskTime.get().getLaunchTimeMillis(), timerTaskTime.get().getPeriodMillis());
 
         JFrame mainFrame = new JFrame();
         JPanel panel = new JPanel();
-        Button serializeButton = new Button("Сериализовать");
+        Button serializeButton = new Button("Сохранить");
         serializeButton.addActionListener(actionEvent -> {
             try {
+                long currentTimeMillis = System.currentTimeMillis();
                 FileWriter fileWriter = new FileWriter("json.json");
-                timerTaskTime.get().setCurrentTimeMillis(System.currentTimeMillis());
-                timerTaskVisitor.get().setCurrentTimeMillis(System.currentTimeMillis());
-                timerTaskResupply.get().setCurrentTimeMillis(System.currentTimeMillis());
+                timerTaskTime.get().setCurrentTimeMillis(currentTimeMillis);
                 timerTaskTime.get().setLaunchTimeMillis(timerTaskTime.get().scheduledExecutionTime());
-                timerTaskVisitor.get().setLaunchTimeMillis(timerTaskVisitor.get().scheduledExecutionTime());
-                timerTaskResupply.get().setLaunchTimeMillis(timerTaskResupply.get().scheduledExecutionTime());
-                for (TimerTaskWaiting timerTaskWaiting : GlobalVar.waitingList) {
-                    timerTaskWaiting.setLaunchTimeMillis(timerTaskWaiting.scheduledExecutionTime());
-                }
+                GlobalVar.GSON.toJson(restaurant.get(), fileWriter);
+                GlobalVar.GSON.toJson(GlobalVar.timeWrapper, fileWriter);
+                GlobalVar.GSON.toJson(timerTaskTime.get(), fileWriter);
+
                 for (TimerTaskCooking timerTaskCooking : GlobalVar.cookingList) {
+                    timerTaskCooking.setCurrentTimeMillis(currentTimeMillis);
                     timerTaskCooking.setLaunchTimeMillis(timerTaskCooking.scheduledExecutionTime());
                 }
-                GlobalVar.GSON.toJson(restaurant, fileWriter);
-                GlobalVar.GSON.toJson(timeWrapper, fileWriter);
-                GlobalVar.GSON.toJson(timerTaskTime, fileWriter);
-                GlobalVar.GSON.toJson(timerTaskVisitor, fileWriter);
-                GlobalVar.GSON.toJson(timerTaskResupply, fileWriter);
                 GlobalVar.GSON.toJson(GlobalVar.cookingList, fileWriter);
+                for (TimerTaskWaiting timerTaskWaiting : GlobalVar.waitingList) {
+                    timerTaskWaiting.setCurrentTimeMillis(currentTimeMillis);
+                    timerTaskWaiting.setLaunchTimeMillis(timerTaskWaiting.scheduledExecutionTime());
+                }
                 GlobalVar.GSON.toJson(GlobalVar.waitingList, fileWriter);
+
                 fileWriter.flush();
 
-                System.out.println(">>>>>>>>>> Сохранено на момент времени: " + timeWrapper.getTime());
+                System.out.println(">>>>>>>>>> Сохранено на момент времени: " + GlobalVar.timeWrapper.getTime());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
         panel.add(serializeButton);
-        Button deserializeButton = new Button("Десеарилозвать");
+        Button deserializeButton = new Button("Загрузить");
         deserializeButton.addActionListener(actionEvent -> {
             try {
+                GlobalVar.timer = new Timer();
                 JsonReader fileReader = new JsonReader(new FileReader("json.json"));
                 fileReader.setLenient(true);
                 restaurant.set(GlobalVar.GSON.fromJson(fileReader, Restaurant.class));
-                timeWrapper = GlobalVar.GSON.fromJson(fileReader, TimeWrapper.class);
-                timerTaskTime.set(GlobalVar.GSON.fromJson(fileReader, TimerTaskTime.class));
-                timerTaskVisitor.set(GlobalVar.GSON.fromJson(fileReader, TimerTaskVisitor.class));
-                timerTaskResupply.set(GlobalVar.GSON.fromJson(fileReader, TimerTaskResupply.class));
-                // todo НОРМАЛЬНО десеарилзовать списки, пушто вылетает рантайм экспешн
-                GlobalVar.cookingList = GlobalVar.GSON.fromJson(fileReader,
-                        new TypeToken<ArrayList<TimerTaskCooking>>() {
-                        }.getType());
-                GlobalVar.waitingList = GlobalVar.GSON.fromJson(fileReader,
-                        new TypeToken<ArrayList<TimerTaskWaiting>>() {
-                        }.getType());
+                GlobalVar.timeWrapper = GlobalVar.GSON.fromJson(fileReader, TimeWrapper.class);
+
+                TimerTaskTime modifiedTimerTask = GlobalVar.GSON.fromJson(fileReader, TimerTaskTime.class);
+                timerTaskTime.get().cancel();
+                timerTaskTime.set(modifiedTimerTask.clone());
 
                 GlobalVar.timer = new Timer();
-                // todo и тут что то не так. Какого черта тут период отрицательный, что не так?
-                GlobalVar.timer.schedule(
+                GlobalVar.timer.scheduleAtFixedRate(
                         timerTaskTime.get(),
-                        timerTaskTime.get().getLaunchTimeMillis() - timerTaskTime.get().getCurrentTimeMillis(),
+                        Math.abs(timerTaskTime.get().getCurrentTimeMillis() - timerTaskTime.get().getLaunchTimeMillis()),
                         timerTaskTime.get().getPeriodMillis()
                 );
-                GlobalVar.timer.schedule(
-                        timerTaskVisitor.get(),
-                        timerTaskVisitor.get().getLaunchTimeMillis() - timerTaskVisitor.get().getCurrentTimeMillis(),
-                        timerTaskVisitor.get().getPeriodMillis()
-                );
-                GlobalVar.timer.schedule(
-                        timerTaskResupply.get(),
-                        timerTaskResupply.get().getLaunchTimeMillis() - timerTaskResupply.get().getCurrentTimeMillis(),
-                        timerTaskResupply.get().getPeriodMillis()
-                );
-                for (TimerTaskCooking timerTaskCooking : GlobalVar.cookingList) {
+
+                ArrayList<TimerTaskCooking> timerTaskCookingList = GlobalVar.GSON.fromJson(fileReader,
+                        new TypeToken<ArrayList<TimerTaskCooking>>() {
+                        }.getType());
+                ArrayList<TimerTaskWaiting> timerTaskWaitingList = GlobalVar.GSON.fromJson(fileReader,
+                        new TypeToken<ArrayList<TimerTaskWaiting>>() {
+                        }.getType());
+                GlobalVar.cookingList.forEach(ModifiedTimerTask::cancel);
+                GlobalVar.cookingList = new ArrayList<>();
+                GlobalVar.waitingList.forEach(ModifiedTimerTask::cancel);
+                GlobalVar.waitingList = new ArrayList<>();
+
+                for (TimerTaskCooking timerTaskCooking : timerTaskCookingList) {
+                    // великолепная конструкция. Избавляемся от поля state, которое не позволяет запустить таск снова!
+                    timerTaskCooking = timerTaskCooking.clone();
                     GlobalVar.timer.schedule(
                             timerTaskCooking,
-                            timerTaskCooking.getLaunchTimeMillis() - timerTaskCooking.getCurrentTimeMillis()
+                            Math.abs(timerTaskCooking.getLaunchTimeMillis() - timerTaskCooking.getCurrentTimeMillis())
                     );
                 }
-                for (TimerTaskWaiting timerTaskWaiting : GlobalVar.waitingList) {
+                for (TimerTaskWaiting timerTaskWaiting : timerTaskWaitingList) {
+                    // великолепная конструкция. Избавляемся от поля state, которое не позволяет запустить таск снова!
+                    timerTaskWaiting = timerTaskWaiting.clone();
                     GlobalVar.timer.schedule(
                             timerTaskWaiting,
-                            timerTaskWaiting.getLaunchTimeMillis() - timerTaskWaiting.getCurrentTimeMillis()
+                            Math.abs(timerTaskWaiting.getLaunchTimeMillis() - timerTaskWaiting.getCurrentTimeMillis())
                     );
                 }
 
-                System.out.println(">>>>>>>>>> Загружено на момент времени: " + timeWrapper.getTime());
+                System.out.println(">>>>>>>>>> Загружено на момент времени: " + GlobalVar.timeWrapper.getTime());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

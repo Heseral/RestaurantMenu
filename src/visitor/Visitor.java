@@ -20,7 +20,7 @@ public class Visitor {
     // уже сделанный и ожидаемый заказ
     private Order order = null;
     // имя клиента
-    private String name = "Нулл Андефайнед Нуллович";
+    private String name;
 
     public Visitor(List<Class<? extends Ingredient>> restrictions, List<Class<? extends Dish>> wishes, int freeTime, int cash) {
         setRestrictions(restrictions);
@@ -31,6 +31,7 @@ public class Visitor {
     }
 
     public Visitor() {
+        setName("Visitor #" + hashCode());
         setOrder(new Order(this));
         setCash(Random.random(300, 10000));
         setFreeTime(Random.random(5, 120));
@@ -45,6 +46,11 @@ public class Visitor {
             }
         }
         setWishes(desirableCategories);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     public List<Class<? extends Dish>> getWishes() {

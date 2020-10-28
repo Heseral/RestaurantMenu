@@ -15,7 +15,7 @@ public class ClassTypeAdapter implements JsonSerializer<Class<?>>, JsonDeseriali
     public Class<?> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
         try {
-            return Class.forName(json.getAsString());
+            return Class.forName(json.getAsString().replaceAll("class ", ""));
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

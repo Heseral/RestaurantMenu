@@ -30,6 +30,8 @@ import util.timer_tasks.TimerTaskWaiting;
 import java.util.*;
 
 public abstract class GlobalVar {
+    // проклятая многопоточность!
+    public static boolean isSafeToSave = true;
     // обертка для времени. Имеет только дно поле - время в секундах.
     public static TimeWrapper timeWrapper = new TimeWrapper();
     // хранилище всех отсроченных, но еще, возможно, выполнимых заказов

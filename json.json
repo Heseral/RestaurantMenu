@@ -1,0 +1,373 @@
+{
+  "ingredients": {
+    "class restaurant.food.ingredient.Water": -2147483645,
+    "class restaurant.food.ingredient.Alcohol": 45,
+    "class restaurant.food.ingredient.Flour": 56,
+    "class restaurant.food.ingredient.Meat": 43,
+    "class restaurant.food.ingredient.Fruits": 50,
+    "class restaurant.food.ingredient.Vegetables": 36,
+    "class restaurant.food.ingredient.Milk": 42,
+    "class restaurant.food.ingredient.Egg": 35,
+    "class restaurant.food.ingredient.Sugar": 39
+  },
+  "menu": [
+    "restaurant.food.dish.dishes.drinks.alcoholic.Beer",
+    "restaurant.food.dish.dishes.drinks.alcoholic.Champagne",
+    "restaurant.food.dish.dishes.drinks.alcoholic.Vodka",
+    "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+    "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda",
+    "restaurant.food.dish.dishes.drinks.non_alcoholic.Water",
+    "restaurant.food.dish.dishes.snacks.Bread",
+    "restaurant.food.dish.dishes.snacks.Sandwich",
+    "restaurant.food.dish.dishes.soft_food.CutletsWithMashedPotato",
+    "restaurant.food.dish.dishes.soft_food.Spaghetti",
+    "restaurant.food.dish.dishes.soups.Borscht",
+    "restaurant.food.dish.dishes.soups.FishSoup",
+    "restaurant.food.dish.dishes.sweet_food.Cake",
+    "restaurant.food.dish.dishes.sweet_food.Pancakes"
+  ],
+  "combinationsSales": [
+    {
+      "first": [
+        "restaurant.food.dish.dishes.soft_food.Spaghetti",
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+        "restaurant.food.dish.dishes.soft_food.CutletsWithMashedPotato"
+      ],
+      "second": 14
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.drinks.alcoholic.Champagne",
+        "restaurant.food.dish.dishes.snacks.Bread"
+      ],
+      "second": 24
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+        "restaurant.food.dish.dishes.drinks.alcoholic.Champagne"
+      ],
+      "second": 18
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.soups.FishSoup",
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda",
+        "restaurant.food.dish.dishes.soups.FishSoup"
+      ],
+      "second": 11
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.soups.Borscht",
+        "restaurant.food.dish.dishes.soups.Borscht"
+      ],
+      "second": 26
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Water",
+        "restaurant.food.dish.dishes.soft_food.Spaghetti",
+        "restaurant.food.dish.dishes.snacks.Bread",
+        "restaurant.food.dish.dishes.snacks.Bread"
+      ],
+      "second": 17
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.soft_food.Spaghetti",
+        "restaurant.food.dish.dishes.snacks.Bread",
+        "restaurant.food.dish.dishes.soups.FishSoup",
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda"
+      ],
+      "second": 18
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.drinks.alcoholic.Champagne",
+        "restaurant.food.dish.dishes.soups.FishSoup",
+        "restaurant.food.dish.dishes.snacks.Bread"
+      ],
+      "second": 8
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.snacks.Sandwich",
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda",
+        "restaurant.food.dish.dishes.soups.Borscht",
+        "restaurant.food.dish.dishes.drinks.alcoholic.Champagne"
+      ],
+      "second": 25
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.drinks.alcoholic.Champagne",
+        "restaurant.food.dish.dishes.sweet_food.Pancakes",
+        "restaurant.food.dish.dishes.snacks.Sandwich",
+        "restaurant.food.dish.dishes.sweet_food.Cake"
+      ],
+      "second": 10
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda"
+      ],
+      "second": 28
+    },
+    {
+      "first": [
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Water",
+        "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda"
+      ],
+      "second": 7
+    }
+  ],
+  "combinationSaleTriggers": [
+    "restaurant.food.dish.dishes.sweet_food.Pancakes",
+    "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+    "restaurant.food.dish.dishes.soft_food.CutletsWithMashedPotato",
+    "restaurant.food.dish.dishes.drinks.alcoholic.Champagne",
+    "restaurant.food.dish.dishes.soft_food.Spaghetti",
+    "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda",
+    "restaurant.food.dish.dishes.drinks.non_alcoholic.Water",
+    "restaurant.food.dish.dishes.snacks.Bread",
+    "restaurant.food.dish.dishes.sweet_food.Cake",
+    "restaurant.food.dish.dishes.snacks.Sandwich",
+    "restaurant.food.dish.dishes.soups.Borscht",
+    "restaurant.food.dish.dishes.soups.FishSoup"
+  ]
+}{
+  "time": 43
+}{
+  "restaurant": {
+    "ingredients": {
+      "class restaurant.food.ingredient.Water": -2147483645,
+      "class restaurant.food.ingredient.Alcohol": 45,
+      "class restaurant.food.ingredient.Flour": 50,
+      "class restaurant.food.ingredient.Meat": 43,
+      "class restaurant.food.ingredient.Fruits": 48,
+      "class restaurant.food.ingredient.Vegetables": 36,
+      "class restaurant.food.ingredient.Milk": 36,
+      "class restaurant.food.ingredient.Egg": 25,
+      "class restaurant.food.ingredient.Sugar": 35
+    },
+    "menu": [
+      "restaurant.food.dish.dishes.drinks.alcoholic.Beer",
+      "restaurant.food.dish.dishes.drinks.alcoholic.Champagne",
+      "restaurant.food.dish.dishes.drinks.alcoholic.Vodka",
+      "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+      "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda",
+      "restaurant.food.dish.dishes.drinks.non_alcoholic.Water",
+      "restaurant.food.dish.dishes.snacks.Bread",
+      "restaurant.food.dish.dishes.snacks.Sandwich",
+      "restaurant.food.dish.dishes.soft_food.CutletsWithMashedPotato",
+      "restaurant.food.dish.dishes.soft_food.Spaghetti",
+      "restaurant.food.dish.dishes.soups.Borscht",
+      "restaurant.food.dish.dishes.soups.FishSoup",
+      "restaurant.food.dish.dishes.sweet_food.Cake",
+      "restaurant.food.dish.dishes.sweet_food.Pancakes"
+    ],
+    "combinationsSales": [
+      {
+        "first": [
+          "restaurant.food.dish.dishes.soft_food.Spaghetti",
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+          "restaurant.food.dish.dishes.soft_food.CutletsWithMashedPotato"
+        ],
+        "second": 14
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.drinks.alcoholic.Champagne",
+          "restaurant.food.dish.dishes.snacks.Bread"
+        ],
+        "second": 24
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+          "restaurant.food.dish.dishes.drinks.alcoholic.Champagne"
+        ],
+        "second": 18
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.soups.FishSoup",
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda",
+          "restaurant.food.dish.dishes.soups.FishSoup"
+        ],
+        "second": 11
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.soups.Borscht",
+          "restaurant.food.dish.dishes.soups.Borscht"
+        ],
+        "second": 26
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Water",
+          "restaurant.food.dish.dishes.soft_food.Spaghetti",
+          "restaurant.food.dish.dishes.snacks.Bread",
+          "restaurant.food.dish.dishes.snacks.Bread"
+        ],
+        "second": 17
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.soft_food.Spaghetti",
+          "restaurant.food.dish.dishes.snacks.Bread",
+          "restaurant.food.dish.dishes.soups.FishSoup",
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda"
+        ],
+        "second": 18
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.drinks.alcoholic.Champagne",
+          "restaurant.food.dish.dishes.soups.FishSoup",
+          "restaurant.food.dish.dishes.snacks.Bread"
+        ],
+        "second": 8
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.snacks.Sandwich",
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda",
+          "restaurant.food.dish.dishes.soups.Borscht",
+          "restaurant.food.dish.dishes.drinks.alcoholic.Champagne"
+        ],
+        "second": 25
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.drinks.alcoholic.Champagne",
+          "restaurant.food.dish.dishes.sweet_food.Pancakes",
+          "restaurant.food.dish.dishes.snacks.Sandwich",
+          "restaurant.food.dish.dishes.sweet_food.Cake"
+        ],
+        "second": 10
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda"
+        ],
+        "second": 28
+      },
+      {
+        "first": [
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Water",
+          "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda"
+        ],
+        "second": 7
+      }
+    ],
+    "combinationSaleTriggers": [
+      "restaurant.food.dish.dishes.sweet_food.Pancakes",
+      "restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake",
+      "restaurant.food.dish.dishes.soft_food.CutletsWithMashedPotato",
+      "restaurant.food.dish.dishes.drinks.alcoholic.Champagne",
+      "restaurant.food.dish.dishes.soft_food.Spaghetti",
+      "restaurant.food.dish.dishes.drinks.non_alcoholic.Soda",
+      "restaurant.food.dish.dishes.drinks.non_alcoholic.Water",
+      "restaurant.food.dish.dishes.snacks.Bread",
+      "restaurant.food.dish.dishes.sweet_food.Cake",
+      "restaurant.food.dish.dishes.snacks.Sandwich",
+      "restaurant.food.dish.dishes.soups.Borscht",
+      "restaurant.food.dish.dishes.soups.FishSoup"
+    ]
+  },
+  "visitorService": {},
+  "restaurantService": {},
+  "currentTimeMillis": 1603890119516,
+  "launchTimeMillis": 1603890119280,
+  "periodMillis": 1000,
+  "lock": {},
+  "state": 1,
+  "nextExecutionTime": 1603890120280,
+  "period": 1000
+}[
+  {
+    "dish": {
+      "timeToCook": 64,
+      "currentPrice": 399,
+      "name": "Фруктовый торт",
+      "basicPrice": 399
+    },
+    "visitor": {
+      "freeTime": 108,
+      "cash": 8610,
+      "order": {
+        "orderedDishes": [
+          {
+            "timeToCook": 64,
+            "currentPrice": 399,
+            "name": "Фруктовый торт",
+            "basicPrice": 399
+          },
+          {
+            "timeToCook": 64,
+            "currentPrice": 399,
+            "name": "Фруктовый торт",
+            "basicPrice": 399
+          }
+        ],
+        "servedDishes": [],
+        "totalPrice": 798
+      },
+      "name": "Visitor #1683787454"
+    },
+    "restaurantService": {},
+    "currentTimeMillis": 1603890119516,
+    "launchTimeMillis": 1603890170254,
+    "periodMillis": -1,
+    "lock": {},
+    "state": 1,
+    "nextExecutionTime": 1603890170254,
+    "period": 0
+  },
+  {
+    "dish": {
+      "timeToCook": 64,
+      "currentPrice": 399,
+      "name": "Фруктовый торт",
+      "basicPrice": 399
+    },
+    "visitor": {
+      "freeTime": 108,
+      "cash": 8610,
+      "order": {
+        "orderedDishes": [
+          {
+            "timeToCook": 64,
+            "currentPrice": 399,
+            "name": "Фруктовый торт",
+            "basicPrice": 399
+          },
+          {
+            "timeToCook": 64,
+            "currentPrice": 399,
+            "name": "Фруктовый торт",
+            "basicPrice": 399
+          }
+        ],
+        "servedDishes": [],
+        "totalPrice": 798
+      },
+      "name": "Visitor #1683787454"
+    },
+    "restaurantService": {},
+    "currentTimeMillis": 1603890119516,
+    "launchTimeMillis": 1603890170254,
+    "periodMillis": -1,
+    "lock": {},
+    "state": 1,
+    "nextExecutionTime": 1603890170254,
+    "period": 0
+  }
+][]

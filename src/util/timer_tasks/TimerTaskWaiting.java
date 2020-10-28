@@ -31,6 +31,18 @@ public class TimerTaskWaiting extends ModifiedTimerTask {
     }
 
     @Override
+    public TimerTaskWaiting clone() {
+        // да, я просто ссылочки устанавливаю. В рамках этого таска этого достаточно. Да, я знаю, что нужно клонировать
+        // и то, что в скобочках!
+        TimerTaskWaiting result = new TimerTaskWaiting(getRestaurant(), getVisitor(), getRestaurantService(), getVisitorService(), getDish());
+
+        result.setCurrentTimeMillis(getCurrentTimeMillis());
+        result.setLaunchTimeMillis(getLaunchTimeMillis());
+
+        return result;
+    }
+
+    @Override
     public void run() {
         getRestaurantService().handleOrderedDish(getRestaurant(), getDish(), getVisitor(), getVisitorService());
         GlobalVar.waitingList.remove(this);

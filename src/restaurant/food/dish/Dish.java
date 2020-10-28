@@ -1,13 +1,15 @@
 package restaurant.food.dish;
 
+import com.google.gson.InstanceCreator;
 import restaurant.food.Food;
 import restaurant.food.ingredient.Ingredient;
 import util.GlobalVar;
 import util.Pair;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
-public abstract class Dish extends Food{
+public class Dish extends Food{
 
     // время, необходимое для приготовления блюда
     private int timeToCook;

@@ -6,6 +6,11 @@ public abstract class Food {
     // базовая цена еды без скидки
     private int basicPrice;
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public String getName() {
         return name;
     }
