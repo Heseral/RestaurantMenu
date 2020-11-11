@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5f0f73b-bc7d-4e58-bef1-6770fd978eee" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/json.json" beforeDir="false" afterPath="$PROJECT_DIR$/json.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/restaurant/food/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/food/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/GlobalVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/GlobalVar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskCooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskCooking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskResupply.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/timer_tasks/TimerTaskVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visitor/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visitor/Visitor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +22,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1hGuKJwF7FGjJw3wrhik5Fo26Zf" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -42,12 +42,12 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="D:/Computer graphics/KG2020_G22_Task2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../KG2020_G22_Task3" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -109,14 +109,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="177" key="#Auto_Import/0.0.1920.1040@0.0.1920.1040" timestamp="1600330845096" />
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600275532082">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605098651857">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600275532082" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605098651857" />
     <state x="765" y="228" key="#com.intellij.ide.util.MemberChooser" timestamp="1603877878836">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="228" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1603877878836" />
+    <state x="683" y="208" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1605097815641">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="683" y="208" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605097815641" />
     <state x="664" y="202" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1603884928563">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -133,22 +137,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603877288578" />
-    <state width="1876" height="394" key="GridCell.Tab.0.bottom" timestamp="1603890136192">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1604072771756">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="394" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603890136192" />
-    <state width="1876" height="394" key="GridCell.Tab.0.center" timestamp="1603890136191">
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604072771756" />
+    <state width="1876" height="201" key="GridCell.Tab.0.bottom" timestamp="1605098623594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="394" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603890136191" />
-    <state width="1876" height="394" key="GridCell.Tab.0.left" timestamp="1603890136191">
+    <state width="1876" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605098623594" />
+    <state width="1876" height="201" key="GridCell.Tab.0.center" timestamp="1605098623594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="394" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603890136191" />
-    <state width="1876" height="394" key="GridCell.Tab.0.right" timestamp="1603890136192">
+    <state width="1876" height="201" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605098623594" />
+    <state width="1876" height="201" key="GridCell.Tab.0.left" timestamp="1605098623594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="394" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603890136192" />
+    <state width="1876" height="201" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605098623594" />
+    <state width="1876" height="201" key="GridCell.Tab.0.right" timestamp="1605098623594">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="201" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605098623594" />
     <state width="1876" height="394" key="GridCell.Tab.1.bottom" timestamp="1603890136192">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -165,10 +173,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1876" height="394" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603890136192" />
-    <state x="397" y="90" key="SettingsEditor" timestamp="1603871494566">
+    <state x="397" y="90" key="SettingsEditor" timestamp="1605098663606">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="397" y="90" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603871494566" />
+    <state x="397" y="90" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605098663606" />
     <state x="592" y="218" width="736" height="606" key="find.popup" timestamp="1603889209244">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
