@@ -6,8 +6,9 @@ import restaurant.food.ingredient.Water;
 import util.GlobalVar;
 import util.Pair;
 import util.Random;
-import util.timer_tasks.TimerTaskCooking;
-import util.timer_tasks.TimerTaskWaiting;
+import util.timer_tasks.TaskController;
+import util.timer_tasks.TaskCooking;
+import util.timer_tasks.TaskWaiting;
 import visitor.Order;
 import visitor.Visitor;
 import visitor.VisitorService;
@@ -22,6 +23,7 @@ public class RestaurantService {
 
     /**
      * Добавляет к каждой категории ингредиента от 5 до 15 улсовных единиц ингредиента
+     *
      * @param restaurant ресторан, которому будут доставлены ингредиенты
      */
     public void resupplyIngredientsRandomly(Restaurant restaurant) {
@@ -32,6 +34,7 @@ public class RestaurantService {
 
     /**
      * Устанавливает стандартное меню для ресторана
+     *
      * @param restaurant ресторан, для которого будет установлено стандартное меню
      */
     public void setDefaultRestaurantMenu(Restaurant restaurant) {
@@ -40,6 +43,7 @@ public class RestaurantService {
 
     /**
      * Создает случайный набор скидок для ресторана
+     *
      * @param restaurant ресторана, для которого будут формироваться наборы скидок
      */
     public void setDefaultRestaurantCombinationsSales(Restaurant restaurant) {
@@ -61,6 +65,7 @@ public class RestaurantService {
 
     /**
      * Заполняет склад ресторана случайным количеством ингредиентов: от 25 до 50 каждого типа
+     *
      * @param restaurant ресторан, который будет заполнен ингрдиентами
      */
     public void setDefaultRestaurantIngredientsRandomly(Restaurant restaurant) {
@@ -79,8 +84,9 @@ public class RestaurantService {
 
     /**
      * Спрашивает у ресторана, готов ли он прямо сейчас начать готовить какое то блюдо
+     *
      * @param restaurant ресторан, который мы будем опрашивать
-     * @param dish блюдо, которое мы хотели бы приготовить
+     * @param dish       блюдо, которое мы хотели бы приготовить
      * @return true, если ресторан готов начать готовить dish прямо сейчас
      */
     public boolean isRestaurantAvailableToCookDishRightNow(Restaurant restaurant, Dish dish) {
@@ -100,15 +106,17 @@ public class RestaurantService {
     /**
      * Обрабатывает заказ клиента: каждое блюдо в заказе обрабатывается в handleOrderedDish(). Также взымает
      * плату с visitor за заказанные блюда.
-     * @param restaurant ресторан, в котором был сделан заказ
-     * @param order заказ
+     *
+     * @param restaurant     ресторан, в котором был сделан заказ
+     * @param order          заказ
      * @param visitorService сервис посетителя
      */
-    public void handleOrder(Restaurant restaurant, Order order, VisitorService visitorService) {
-        while (visitorService.handleCombinationSalesInOrder(order.getOrderedBy(), restaurant)) {}
+    public void handleOrder(Restaurant restaurant, Order order, VisitorService visitorService, TaskController controlledBy) {
+        while (visitorService.handleCombinationSalesInOrder(order.getOrderedBy(), restaurant)) {
+        }
         order.getOrderedBy().setCash(order.getOrderedBy().getCash() - order.getTotalPrice());
         for (Dish orderedDish : order.getOrderedDishes()) {
-            handleOrderedDish(restaurant, orderedDish, order.getOrderedBy(), visitorService);
+            handleOrderedDish(restaurant, orderedDish, order.getOrderedBy(), visitorService, controlledBy);
         }
     }
 
@@ -116,25 +124,33 @@ public class RestaurantService {
      * Обработка заказанного клиентом visitor блюда dish. Сюда входит начало приготовления блюда, его задержка
      * приготовления в случае невозможности сделать прямо сейчас, а елси клиент не хочет ждать - вернуть стоиомсть
      * блюда клиенту за неустойку.
-     * @param restaurant ресторан, в котором происходит приготовление блюда
-     * @param dish блюдо
-     * @param visitor посетитель, заказавший блюдо
+     *
+     * @param restaurant     ресторан, в котором происходит приготовление блюда
+     * @param dish           блюдо
+     * @param visitor        посетитель, заказавший блюдо
      * @param visitorService севрис посетителя
      */
-    public void handleOrderedDish(Restaurant restaurant, Dish dish, Visitor visitor, VisitorService visitorService) {
+    public void handleOrderedDish(
+            Restaurant restaurant,
+            Dish dish,
+            Visitor visitor,
+            VisitorService visitorService,
+            TaskController controlledBy
+    ) {
         if (isRestaurantAvailableToCookDishRightNow(restaurant, dish)) {
-            startCookingDish(restaurant, dish, visitor);
+            startCookingDish(restaurant, dish, visitor, controlledBy);
             return;
         }
         if (visitorService.isReadyToWaitAdditionalTime(visitor, dish.getTimeToCook(), 1)) {
-            TimerTaskWaiting timerTaskWaiting = new TimerTaskWaiting(
+            new TaskWaiting(
                     restaurant,
                     visitor,
                     this,
                     visitorService,
-                    dish
+                    dish,
+                    dish.getTimeToCook() + controlledBy.getCurrentTime(),
+                    controlledBy
             );
-            GlobalVar.timer.schedule(timerTaskWaiting, GlobalVar.SECOND);
             return;
         }
 
@@ -143,7 +159,8 @@ public class RestaurantService {
 
     /**
      * Подает блюдо посетителю. На самом деле нет, я вас обманул. Оно просто выводит в консоль, что блюдо подано.
-     * @param dish подаваемое блюдо
+     *
+     * @param dish    подаваемое блюдо
      * @param visitor посетитель, принимающий блюдо
      */
     public void serveDish(Dish dish, Visitor visitor) {
@@ -154,7 +171,8 @@ public class RestaurantService {
 
     /**
      * Возвращает деньги за блюдо посетителю
-     * @param dish блюдо, которое не удалось приготовить
+     *
+     * @param dish    блюдо, которое не удалось приготовить
      * @param visitor посетитель, которому будет переданы деньги за не приготовленное блюдо
      */
     private void handleForfeit(Dish dish, Visitor visitor) {
@@ -164,25 +182,29 @@ public class RestaurantService {
 
     /**
      * Поручает ресторану готовку блюда, включая трату ингредиентов
+     *
      * @param restaurant ресторан, в котором готовится блюдо
-     * @param dish блюдо
-     * @param visitor посетитель, заказавший блюдо
+     * @param dish       блюдо
+     * @param visitor    посетитель, заказавший блюдо
      */
-    private void startCookingDish(Restaurant restaurant, Dish dish, Visitor visitor) {
+    private void startCookingDish(Restaurant restaurant, Dish dish, Visitor visitor, TaskController controlledBy) {
         for (Pair<Class<? extends Ingredient>, Integer> recipePart : dish.getRecipe()) {
             restaurant.getIngredients().put(recipePart.getFirst(), restaurant.getIngredients().get(recipePart.getFirst()) - recipePart.getSecond());
         }
-        TimerTaskCooking timerTaskCooking = new TimerTaskCooking(
+        new TaskCooking(
                 dish,
                 visitor,
-                this
-                );
-        GlobalVar.timer.schedule(timerTaskCooking, dish.getTimeToCook() * GlobalVar.SECOND);
+                this,
+                restaurant,
+                dish.getTimeToCook() + controlledBy.getCurrentTime(),
+                controlledBy
+        );
     }
 
     /**
      * Вызывается когда блюдо приготовлено. Подает блюдо клиенту
-     * @param dish приготовленное блюдо
+     *
+     * @param dish    приготовленное блюдо
      * @param visitor посетитель, заказавший блюдо
      */
     public void onDishCooked(Dish dish, Visitor visitor) {

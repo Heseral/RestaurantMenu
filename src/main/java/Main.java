@@ -1,9 +1,7 @@
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import restaurant.Restaurant;
 import restaurant.RestaurantService;
 import util.GlobalVar;
-import util.TimeWrapper;
 import util.timer_tasks.*;
 import visitor.VisitorService;
 
@@ -13,8 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicReference;
 
 /*
@@ -25,6 +22,9 @@ import java.util.concurrent.atomic.AtomicReference;
     заказывать блюда исходя из своих пожеланий, наличия свободного времени
     и денежных средств.
  */
+// todo избавиться от меняющихся глобальных переменных
+// todo разнести все по папкам Visitor и Service
+// todo переделать склад ингредиентов ресторана как хешсет енамов
 public class Main {
     public static void main(String[] args) {
         AtomicReference<Restaurant> restaurant = new AtomicReference<>(new Restaurant());
@@ -36,105 +36,71 @@ public class Main {
 
         VisitorService visitorService = new VisitorService();
 
-        AtomicReference<TimerTaskTime> timerTaskTime = new AtomicReference<>(new TimerTaskTime(
-                GlobalVar.SECOND,
-                restaurant.get(),
-                restaurantService,
-                visitorService
-        ));
+        AtomicReference<TaskController> taskController = new AtomicReference<>(
+                new TaskController(restaurant.get(), visitorService, restaurantService)
+        );
+        new java.util.Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                JFrame mainFrame = new JFrame();
+                JPanel panel = new JPanel();
+                Button serializeButton = new Button("Сохранить");
+                serializeButton.addActionListener(actionEvent -> {
+                    if (!GlobalVar.isSafeToSave) {
+                        System.out.println("$$$$$ Что-то пошло не так. Попобуйте еще раз.");
+                        return;
+                    }
+                    try {
+                        FileWriter fileWriter = new FileWriter("json.json");
+                        GlobalVar.GSON.toJson(taskController.get(), fileWriter);
+                        GlobalVar.GSON.toJson(restaurant.get(), fileWriter);
 
-        GlobalVar.timer.scheduleAtFixedRate(timerTaskTime.get(), timerTaskTime.get().getLaunchTimeMillis(), timerTaskTime.get().getPeriodMillis());
+                        fileWriter.flush();
 
-        JFrame mainFrame = new JFrame();
-        JPanel panel = new JPanel();
-        Button serializeButton = new Button("Сохранить");
-        serializeButton.addActionListener(actionEvent -> {
-            try {
-                long currentTimeMillis = System.currentTimeMillis();
-                FileWriter fileWriter = new FileWriter("json.json");
-                timerTaskTime.get().setCurrentTimeMillis(currentTimeMillis);
-                timerTaskTime.get().setLaunchTimeMillis(timerTaskTime.get().scheduledExecutionTime());
-                GlobalVar.GSON.toJson(restaurant.get(), fileWriter);
-                GlobalVar.GSON.toJson(GlobalVar.timeWrapper, fileWriter);
-                GlobalVar.GSON.toJson(timerTaskTime.get(), fileWriter);
+                        System.out.println(">>>>>>>>>> Сохранено на момент времени: " + taskController.get().getCurrentTime());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                panel.add(serializeButton);
+                Button deserializeButton = new Button("Загрузить");
+                deserializeButton.addActionListener(actionEvent -> {
+                    if (!GlobalVar.isSafeToSave) {
+                        System.out.println("$$$$$ Что-то пошло не так. Попобуйте еще раз.");
+                        return;
+                    }
+                    try {
+                        JsonReader fileReader = new JsonReader(new FileReader("json.json"));
+                        fileReader.setLenient(true);
 
-                for (TimerTaskCooking timerTaskCooking : GlobalVar.cookingList) {
-                    timerTaskCooking.setCurrentTimeMillis(currentTimeMillis);
-                    timerTaskCooking.setLaunchTimeMillis(timerTaskCooking.scheduledExecutionTime());
-                }
-                GlobalVar.GSON.toJson(GlobalVar.cookingList, fileWriter);
-                for (TimerTaskWaiting timerTaskWaiting : GlobalVar.waitingList) {
-                    timerTaskWaiting.setCurrentTimeMillis(currentTimeMillis);
-                    timerTaskWaiting.setLaunchTimeMillis(timerTaskWaiting.scheduledExecutionTime());
-                }
-                GlobalVar.GSON.toJson(GlobalVar.waitingList, fileWriter);
+                        taskController.get().setProcessing(false);
+                        taskController.set(GlobalVar.GSON.fromJson(fileReader, TaskController.class));
+                        System.out.println(">>>>>>>>>> Загружено на момент времени: " + taskController.get().getCurrentTime());
+                        restaurant.set(GlobalVar.GSON.fromJson(fileReader, Restaurant.class));
+                        taskController.get().setRestaurant(restaurant.get());
+                        for (Task task : taskController.get().getTasksCooking()) {
+                            task.setControlledBy(taskController.get());
+                        }
+                        for (Task task : taskController.get().getTasksWaiting()) {
+                            task.setControlledBy(taskController.get());
+                        }
+                        taskController.get().setProcessing(true);
+                        new Thread(taskController.get()).start();
 
-                fileWriter.flush();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                });
+                panel.add(deserializeButton);
 
-                System.out.println(">>>>>>>>>> Сохранено на момент времени: " + GlobalVar.timeWrapper.getTime());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        panel.add(serializeButton);
-        Button deserializeButton = new Button("Загрузить");
-        deserializeButton.addActionListener(actionEvent -> {
-            try {
-                GlobalVar.timer = new Timer();
-                JsonReader fileReader = new JsonReader(new FileReader("json.json"));
-                fileReader.setLenient(true);
-                restaurant.set(GlobalVar.GSON.fromJson(fileReader, Restaurant.class));
-                GlobalVar.timeWrapper = GlobalVar.GSON.fromJson(fileReader, TimeWrapper.class);
+                mainFrame.add(panel);
+                mainFrame.setSize(300, 100);
+                mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                mainFrame.setVisible(true);
+            }}, 0);
 
-                TimerTaskTime modifiedTimerTask = GlobalVar.GSON.fromJson(fileReader, TimerTaskTime.class);
-                timerTaskTime.get().cancel();
-                timerTaskTime.set(modifiedTimerTask.clone());
+        taskController.get().
 
-                GlobalVar.timer = new Timer();
-                GlobalVar.timer.scheduleAtFixedRate(
-                        timerTaskTime.get(),
-                        Math.abs(timerTaskTime.get().getCurrentTimeMillis() - timerTaskTime.get().getLaunchTimeMillis()),
-                        timerTaskTime.get().getPeriodMillis()
-                );
-
-                ArrayList<TimerTaskCooking> timerTaskCookingList = GlobalVar.GSON.fromJson(fileReader,
-                        new TypeToken<ArrayList<TimerTaskCooking>>() {
-                        }.getType());
-                ArrayList<TimerTaskWaiting> timerTaskWaitingList = GlobalVar.GSON.fromJson(fileReader,
-                        new TypeToken<ArrayList<TimerTaskWaiting>>() {
-                        }.getType());
-                GlobalVar.cookingList.forEach(ModifiedTimerTask::cancel);
-                GlobalVar.cookingList = new ArrayList<>();
-                GlobalVar.waitingList.forEach(ModifiedTimerTask::cancel);
-                GlobalVar.waitingList = new ArrayList<>();
-
-                for (TimerTaskCooking timerTaskCooking : timerTaskCookingList) {
-                    // великолепная конструкция. Избавляемся от поля state, которое не позволяет запустить таск снова!
-                    timerTaskCooking = timerTaskCooking.clone();
-                    GlobalVar.timer.schedule(
-                            timerTaskCooking,
-                            Math.abs(timerTaskCooking.getLaunchTimeMillis() - timerTaskCooking.getCurrentTimeMillis())
-                    );
-                }
-                for (TimerTaskWaiting timerTaskWaiting : timerTaskWaitingList) {
-                    // великолепная конструкция. Избавляемся от поля state, которое не позволяет запустить таск снова!
-                    timerTaskWaiting = timerTaskWaiting.clone();
-                    GlobalVar.timer.schedule(
-                            timerTaskWaiting,
-                            Math.abs(timerTaskWaiting.getLaunchTimeMillis() - timerTaskWaiting.getCurrentTimeMillis())
-                    );
-                }
-
-                System.out.println(">>>>>>>>>> Загружено на момент времени: " + GlobalVar.timeWrapper.getTime());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        });
-        panel.add(deserializeButton);
-
-        mainFrame.add(panel);
-        mainFrame.setSize(300, 100);
-        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainFrame.setVisible(true);
+            run();
+        }
     }
-}

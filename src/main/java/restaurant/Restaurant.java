@@ -11,7 +11,6 @@ public class Restaurant {
     String location;
     ...features...
      */
-
     // какие ингредиенты будет пытаться заказать ресторан для готовки блюд. Это модифицированный склад
     private Map<Class<? extends Ingredient>, Integer> ingredients = new HashMap<>();
     // НЕ СКЛАД. Просто меню - доступные для покупки блюда(в виде классов)
@@ -54,5 +53,4 @@ public class Restaurant {
     public void setCombinationSaleTriggers(Set<Class<? extends Dish>> combinationSaleTriggers) {
         this.combinationSaleTriggers = combinationSaleTriggers;
     }
-
 }

@@ -9,6 +9,7 @@ import util.GlobalVar;
 import util.Misc;
 import util.Pair;
 import util.Random;
+import util.timer_tasks.TaskController;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -22,7 +23,12 @@ public class VisitorService {
      *
      * @param visitor посетитель, делающий заказ
      */
-    public boolean createAbsolutelyRandomOrder(Visitor visitor, RestaurantService restaurantService, Restaurant restaurant) {
+    public boolean createAbsolutelyRandomOrder(
+            Visitor visitor,
+            RestaurantService restaurantService,
+            Restaurant restaurant,
+            TaskController controlledBy
+    ) {
         List<Class<? extends Dish>> desirableCategories = new ArrayList<>();
         for (Class<? extends Dish> category : GlobalVar.DISH_CATEGORIES) {
             // вероятность заказа этой категории 50%
@@ -35,7 +41,7 @@ public class VisitorService {
         }
         visitor.setWishes(desirableCategories);
 
-        return createPartiallyRandomOrder(visitor, desirableCategories, restaurantService, restaurant);
+        return createPartiallyRandomOrder(visitor, desirableCategories, restaurantService, restaurant, controlledBy);
     }
 
     /**
@@ -49,7 +55,8 @@ public class VisitorService {
             Visitor visitor,
             List<Class<? extends Dish>> desirableCategories,
             RestaurantService restaurantService,
-            Restaurant restaurant
+            Restaurant restaurant,
+            TaskController controlledBy
     ) {
         List<Class<? extends Dish>> desirableDishes = new ArrayList<>();
         for (Class<? extends Dish> desirableCategory : desirableCategories) {
@@ -57,7 +64,7 @@ public class VisitorService {
         }
 
         try {
-            return createSpecifiedOrder(visitor, desirableDishes, restaurantService, restaurant);
+            return createSpecifiedOrder(visitor, desirableDishes, restaurantService, restaurant, controlledBy);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
         }
@@ -72,8 +79,13 @@ public class VisitorService {
      * @param restaurantService сервис ресторана, обслуживающий клиента
      * @param restaurant        ресторан, в котором происходит заказ
      */
-    public boolean createSpecifiedOrder(Visitor visitor, List<Class<? extends Dish>> desirableDishes, RestaurantService restaurantService, Restaurant restaurant)
-            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public boolean createSpecifiedOrder(
+            Visitor visitor,
+            List<Class<? extends Dish>> desirableDishes,
+            RestaurantService restaurantService,
+            Restaurant restaurant,
+            TaskController controlledBy
+    ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         // нельзя создать пустой заказ
         if (desirableDishes.size() < 1) {
             return false;
@@ -83,20 +95,26 @@ public class VisitorService {
             tryToAddDishToOrder(visitor, desirableDish.getConstructor().newInstance(), restaurantService, restaurant);
         }
 
-        makeOrder(visitor, restaurantService, restaurant);
+        makeOrder(visitor, restaurantService, restaurant, controlledBy);
         return true;
     }
 
     /**
      * Создает заказ исходя из предпочтений wishes посетителя. Блюда из категорий выбираются случайно в
      * методе createPartiallyRandomOrder()
-     * @param visitor посетитель, делающий заказ
+     *
+     * @param visitor           посетитель, делающий заказ
      * @param restaurantService сервис ресторана
-     * @param restaurant ресторан, в котором происходит заказ
+     * @param restaurant        ресторан, в котором происходит заказ
      * @return true, если посетитель сделал заказ, иначе false
      */
-    public boolean createOrder(Visitor visitor, RestaurantService restaurantService, Restaurant restaurant) {
-        return createPartiallyRandomOrder(visitor, visitor.getWishes(), restaurantService, restaurant);
+    public boolean createOrder(
+            Visitor visitor,
+            RestaurantService restaurantService,
+            Restaurant restaurant,
+            TaskController controlledBy
+    ) {
+        return createPartiallyRandomOrder(visitor, visitor.getWishes(), restaurantService, restaurant, controlledBy);
     }
 
     /**
@@ -106,8 +124,13 @@ public class VisitorService {
      * @param restaurantService сервис ресторана, обслуживающего посетителя
      * @param restaurant        ресторан, в котором был делается заказ
      */
-    public void makeOrder(Visitor visitor, RestaurantService restaurantService, Restaurant restaurant) {
-        restaurantService.handleOrder(restaurant, visitor.getOrder(), this);
+    public void makeOrder(
+            Visitor visitor,
+            RestaurantService restaurantService,
+            Restaurant restaurant,
+            TaskController controlledBy
+    ) {
+        restaurantService.handleOrder(restaurant, visitor.getOrder(), this, controlledBy);
     }
 
 
@@ -176,8 +199,9 @@ public class VisitorService {
     /**
      * Спрашивает у клиента, готов ли тот подождать дополнительное время для чего то. например, в случае, если блюдо
      * не удается приготовить в срок, клиент может подождать еще немнеого времени
-     * @param visitor посетитель, у которого "задают вопрос"
-     * @param timeFrom время, которое клиент уже готов был потратить
+     *
+     * @param visitor        посетитель, у которого "задают вопрос"
+     * @param timeFrom       время, которое клиент уже готов был потратить
      * @param additionalTime дополнительное время поверх timeFrom
      * @return true, если клиент соглашается подождать еще additionalTime, false иначе
      */

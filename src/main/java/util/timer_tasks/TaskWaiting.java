@@ -3,50 +3,38 @@ package util.timer_tasks;
 import restaurant.Restaurant;
 import restaurant.RestaurantService;
 import restaurant.food.dish.Dish;
-import util.GlobalVar;
 import visitor.Visitor;
 import visitor.VisitorService;
 
-public class TimerTaskWaiting extends ModifiedTimerTask {
-    private Restaurant restaurant;
+public class TaskWaiting extends Task {
+    private transient Restaurant restaurant;
     private Visitor visitor;
     private RestaurantService restaurantService;
     private VisitorService visitorService;
     private Dish dish;
 
-    public TimerTaskWaiting(
+    public TaskWaiting(
             Restaurant restaurant,
             Visitor visitor,
             RestaurantService restaurantService,
             VisitorService visitorService,
-            Dish dish
+            Dish dish,
+            int launchTime,
+            TaskController controlledBy
     ) {
-        super(-1);
+        super(launchTime, controlledBy);
         setRestaurant(restaurant);
         setVisitorService(visitorService);
         setVisitor(visitor);
         setRestaurantService(restaurantService);
         setDish(dish);
-        GlobalVar.waitingList.add(this);
-    }
-
-    @Override
-    public TimerTaskWaiting clone() {
-        // да, я просто ссылочки устанавливаю. В рамках этого таска этого достаточно. Да, я знаю, что нужно клонировать
-        // и то, что в скобочках!
-        TimerTaskWaiting result = new TimerTaskWaiting(getRestaurant(), getVisitor(), getRestaurantService(), getVisitorService(), getDish());
-
-        result.setCurrentTimeMillis(getCurrentTimeMillis());
-        result.setLaunchTimeMillis(getLaunchTimeMillis());
-
-        return result;
+        getControlledBy().getTasksWaiting().add(this);
     }
 
     @Override
     public void run() {
-        getRestaurantService().handleOrderedDish(getRestaurant(), getDish(), getVisitor(), getVisitorService());
-        GlobalVar.waitingList.remove(this);
-        cancel();
+        getRestaurantService().handleOrderedDish(getRestaurant(), getDish(), getVisitor(), getVisitorService(), getControlledBy());
+        getControlledBy().getTasksWaiting().remove(this);
     }
 
     public Restaurant getRestaurant() {
