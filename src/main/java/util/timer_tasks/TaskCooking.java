@@ -1,9 +1,9 @@
 package util.timer_tasks;
 
-import restaurant.Restaurant;
-import restaurant.RestaurantService;
-import restaurant.food.dish.Dish;
-import visitor.Visitor;
+import model.Restaurant;
+import service.RestaurantService;
+import model.food.dish.Dish;
+import model.Visitor;
 
 public class TaskCooking extends Task {
     private Dish dish;

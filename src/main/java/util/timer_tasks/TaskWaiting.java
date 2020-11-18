@@ -1,10 +1,10 @@
 package util.timer_tasks;
 
-import restaurant.Restaurant;
-import restaurant.RestaurantService;
-import restaurant.food.dish.Dish;
-import visitor.Visitor;
-import visitor.VisitorService;
+import model.Restaurant;
+import service.RestaurantService;
+import model.food.dish.Dish;
+import model.Visitor;
+import service.VisitorService;
 
 public class TaskWaiting extends Task {
     private transient Restaurant restaurant;

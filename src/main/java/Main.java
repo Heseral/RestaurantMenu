@@ -1,9 +1,9 @@
 import com.google.gson.stream.JsonReader;
-import restaurant.Restaurant;
-import restaurant.RestaurantService;
+import model.Restaurant;
+import service.RestaurantService;
 import util.GlobalVar;
 import util.timer_tasks.*;
-import visitor.VisitorService;
+import service.VisitorService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,8 +22,6 @@ import java.util.concurrent.atomic.AtomicReference;
     заказывать блюда исходя из своих пожеланий, наличия свободного времени
     и денежных средств.
  */
-// todo избавиться от меняющихся глобальных переменных
-// todo разнести все по папкам Visitor и Service
 // todo переделать склад ингредиентов ресторана как хешсет енамов
 public class Main {
     public static void main(String[] args) {

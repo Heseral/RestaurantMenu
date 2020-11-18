@@ -2,32 +2,33 @@ package util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import restaurant.food.dish.Dish;
-import restaurant.food.dish.dishes.drinks.Drink;
-import restaurant.food.dish.dishes.drinks.alcoholic.Alcoholic;
-import restaurant.food.dish.dishes.drinks.alcoholic.Beer;
-import restaurant.food.dish.dishes.drinks.alcoholic.Champagne;
-import restaurant.food.dish.dishes.drinks.alcoholic.Vodka;
-import restaurant.food.dish.dishes.drinks.non_alcoholic.Milkshake;
-import restaurant.food.dish.dishes.drinks.non_alcoholic.Soda;
-import restaurant.food.dish.dishes.drinks.non_alcoholic.Water;
-import restaurant.food.dish.dishes.snacks.Bread;
-import restaurant.food.dish.dishes.snacks.Sandwich;
-import restaurant.food.dish.dishes.snacks.Snack;
-import restaurant.food.dish.dishes.soft_food.CutletsWithMashedPotato;
-import restaurant.food.dish.dishes.soft_food.SoftFood;
-import restaurant.food.dish.dishes.soft_food.Spaghetti;
-import restaurant.food.dish.dishes.soups.Borscht;
-import restaurant.food.dish.dishes.soups.FishSoup;
-import restaurant.food.dish.dishes.soups.Soup;
-import restaurant.food.dish.dishes.sweet_food.Cake;
-import restaurant.food.dish.dishes.sweet_food.Pancakes;
-import restaurant.food.dish.dishes.sweet_food.SweetFood;
-import restaurant.food.ingredient.*;
+import model.food.dish.Dish;
+import model.food.dish.Drink;
+import model.food.dish.Alcoholic;
+import model.food.dish.Beer;
+import model.food.dish.Champagne;
+import model.food.dish.Vodka;
+import model.food.dish.Milkshake;
+import model.food.dish.Soda;
+import model.food.dish.Water;
+import model.food.dish.Bread;
+import model.food.dish.Sandwich;
+import model.food.dish.Snack;
+import model.food.dish.CutletsWithMashedPotato;
+import model.food.dish.SoftFood;
+import model.food.dish.Spaghetti;
+import model.food.dish.Borscht;
+import model.food.dish.FishSoup;
+import model.food.dish.Soup;
+import model.food.dish.Cake;
+import model.food.dish.Pancakes;
+import model.food.dish.SweetFood;
+import model.food.ingredient.*;
 
 import java.util.*;
 
 public abstract class GlobalVar {
+    // примитивная защита от конфликтов потоков
     public static boolean isSafeToSave = true;
     // пока через глобальную переменную. Это сериализатор и десериализатор
     public final static Gson GSON = new GsonBuilder()
@@ -92,7 +93,7 @@ public abstract class GlobalVar {
             Milk.class,
             Sugar.class,
             Vegetables.class,
-            restaurant.food.ingredient.Water.class
+            model.food.ingredient.Water.class
     ));
     public final static List<Class<? extends Dish>> ALL_AVAILABLE_DISHES = new ArrayList<>();
 

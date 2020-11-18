@@ -1,10 +1,10 @@
 package util.timer_tasks;
 
-import restaurant.Restaurant;
-import restaurant.RestaurantService;
+import model.Restaurant;
+import service.RestaurantService;
 import util.GlobalVar;
-import visitor.Visitor;
-import visitor.VisitorService;
+import model.Visitor;
+import service.VisitorService;
 
 import java.util.ArrayList;
 

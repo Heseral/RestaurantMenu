@@ -5,11 +5,49 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/json.json" beforeDir="false" afterPath="$PROJECT_DIR$/json.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/TimeWrapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/timer_tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/timer_tasks/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/CombinationSale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CombinationSale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Restaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/RestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/RestaurantService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Dish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/DishService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DishService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/drinks/Drink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Drink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/drinks/alcoholic/Alcoholic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Alcoholic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/drinks/alcoholic/Beer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Beer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/drinks/alcoholic/Champagne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Champagne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/drinks/alcoholic/Vodka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Vodka.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/drinks/non_alcoholic/Milkshake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Milkshake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/drinks/non_alcoholic/Soda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Soda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/drinks/non_alcoholic/Water.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Water.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/snacks/Bread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Bread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/snacks/Sandwich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Sandwich.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/snacks/Snack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Snack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/soft_food/CutletsWithMashedPotato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/CutletsWithMashedPotato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/soft_food/SoftFood.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/SoftFood.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/soft_food/Spaghetti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Spaghetti.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/soups/Borscht.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Borscht.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/soups/FishSoup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/FishSoup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/soups/Soup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Soup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/sweet_food/Cake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Cake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/sweet_food/Pancakes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/Pancakes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/dish/dishes/sweet_food/SweetFood.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/dish/SweetFood.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/ingredient/Alcohol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/ingredient/Alcohol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/ingredient/Egg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/ingredient/Egg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/ingredient/Flour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/ingredient/Flour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/ingredient/Fruits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/ingredient/Fruits.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/ingredient/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/ingredient/Ingredient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/ingredient/Meat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/ingredient/Meat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/ingredient/Milk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/ingredient/Milk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/ingredient/Sugar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/ingredient/Sugar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/ingredient/Vegetables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/ingredient/Vegetables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurant/food/ingredient/Water.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/food/ingredient/Water.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/GlobalVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/GlobalVar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/util/timer_tasks/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/timer_tasks/TaskController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/util/timer_tasks/TaskCooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/timer_tasks/TaskCooking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/util/timer_tasks/TaskWaiting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/timer_tasks/TaskWaiting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/visitor/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/visitor/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Visitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/visitor/VisitorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/VisitorService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +168,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="664" y="202" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605697571282" />
+    <state x="614" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1605698764033">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="614" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605698764033" />
     <state x="714" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1605682665314">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -146,38 +188,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604072771756" />
-    <state width="1876" height="282" key="GridCell.Tab.0.bottom" timestamp="1605697825544">
+    <state width="1876" height="234" key="GridCell.Tab.0.bottom" timestamp="1605698797562">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605697825544" />
-    <state width="1876" height="282" key="GridCell.Tab.0.center" timestamp="1605697825544">
+    <state width="1876" height="234" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605698797562" />
+    <state width="1876" height="234" key="GridCell.Tab.0.center" timestamp="1605698797562">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605697825544" />
-    <state width="1876" height="282" key="GridCell.Tab.0.left" timestamp="1605697825543">
+    <state width="1876" height="234" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605698797562" />
+    <state width="1876" height="234" key="GridCell.Tab.0.left" timestamp="1605698797562">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605697825543" />
-    <state width="1876" height="282" key="GridCell.Tab.0.right" timestamp="1605697825544">
+    <state width="1876" height="234" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605698797562" />
+    <state width="1876" height="234" key="GridCell.Tab.0.right" timestamp="1605698797562">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605697825544" />
-    <state width="1876" height="150" key="GridCell.Tab.1.bottom" timestamp="1605697647035">
+    <state width="1876" height="234" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605698797562" />
+    <state width="1876" height="150" key="GridCell.Tab.1.bottom" timestamp="1605698156905">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="150" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605697647035" />
-    <state width="1876" height="150" key="GridCell.Tab.1.center" timestamp="1605697647035">
+    <state width="1876" height="150" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605698156905" />
+    <state width="1876" height="150" key="GridCell.Tab.1.center" timestamp="1605698156905">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="150" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605697647035" />
-    <state width="1876" height="150" key="GridCell.Tab.1.left" timestamp="1605697647035">
+    <state width="1876" height="150" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605698156905" />
+    <state width="1876" height="150" key="GridCell.Tab.1.left" timestamp="1605698156905">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="150" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605697647035" />
-    <state width="1876" height="150" key="GridCell.Tab.1.right" timestamp="1605697647035">
+    <state width="1876" height="150" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605698156905" />
+    <state width="1876" height="150" key="GridCell.Tab.1.right" timestamp="1605698156905">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="150" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605697647035" />
+    <state width="1876" height="150" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605698156905" />
     <state x="397" y="90" key="SettingsEditor" timestamp="1605098663606">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -190,10 +232,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="235" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605696426893" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1600591441656">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605698127335">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600591441656" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605698127335" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
