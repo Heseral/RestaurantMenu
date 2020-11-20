@@ -1,6 +1,5 @@
 package model;
 
-import model.food.dish.Dish;
 import util.Pair;
 
 import java.util.List;

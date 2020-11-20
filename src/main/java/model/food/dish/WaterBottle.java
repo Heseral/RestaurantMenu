@@ -1,6 +1,5 @@
 package model.food.dish;
 
-import model.food.ingredient.Ingredient;
 import util.GlobalVar;
 import util.Pair;
 
@@ -8,14 +7,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Water extends Drink {
-    public Water(String newName, int newPrice, List<Pair<String, Integer>> newIngredients, int newTimeToCook) {
+public class WaterBottle extends Drink {
+    public WaterBottle(String newName, int newPrice, List<Pair<String, Integer>> newIngredients, int newTimeToCook) {
         super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
-    public Water() {
+    public WaterBottle() {
         this(
-                "Вода",
+                "Бутылка воды",
                 49,
                 new ArrayList<>
                         (Arrays.asList( // вау вода готовится из воды

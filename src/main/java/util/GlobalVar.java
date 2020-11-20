@@ -2,7 +2,6 @@ package util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.food.dish.Dish;
 import model.food.dish.Drink;
 import model.food.dish.Alcoholic;
 import model.food.dish.Beer;
@@ -10,7 +9,7 @@ import model.food.dish.Champagne;
 import model.food.dish.Vodka;
 import model.food.dish.Milkshake;
 import model.food.dish.Soda;
-import model.food.dish.Water;
+import model.food.dish.WaterBottle;
 import model.food.dish.Bread;
 import model.food.dish.Sandwich;
 import model.food.dish.Snack;
@@ -61,7 +60,7 @@ public abstract class GlobalVar {
             Drink.class.getName(), new ArrayList<>(Arrays.asList(
                     Milkshake.class.getName(),
                     Soda.class.getName(),
-                    Water.class.getName()
+                    WaterBottle.class.getName()
             )),
             Snack.class.getName(), new ArrayList<>(Arrays.asList(
                     Bread.class.getName(),
