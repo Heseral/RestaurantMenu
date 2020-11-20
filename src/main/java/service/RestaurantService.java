@@ -60,7 +60,7 @@ public class RestaurantService {
                 combinationSaleDishes.add(dishInCombinationSale);
                 restaurant.getCombinationSaleTriggers().add(dishInCombinationSale);
             }
-            restaurant.getCombinationsSales().add(new CombinationSale(Random.random(5, 30), combinationSaleDishes));
+            restaurant.getCombinationsSales().add(new CombinationSale(combinationSaleDishes, Random.random(5, 30)));
         }
     }
 
