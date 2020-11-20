@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Cake extends SweetFood {
-    public Cake(String newName, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
+    public Cake(String newName, int newPrice, List<Pair<String, Integer>> newIngredients, int newTimeToCook) {
         super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
@@ -19,11 +19,11 @@ public class Cake extends SweetFood {
                 399,
                 new ArrayList<>
                         (Arrays.asList(
-                                new Pair<>(Sugar.class, 2),
-                                new Pair<>(Fruits.class, 1),
-                                new Pair<>(Egg.class, 3),
-                                new Pair<>(Flour.class, 2),
-                                new Pair<>(Milk.class, 2)
+                                new Pair<>(Sugar.class.getName(), 2),
+                                new Pair<>(Fruits.class.getName(), 1),
+                                new Pair<>(Egg.class.getName(), 3),
+                                new Pair<>(Flour.class.getName(), 2),
+                                new Pair<>(Milk.class.getName(), 2)
                         )),
                 GlobalVar.COOK_TIME_MAXIMUM
         );

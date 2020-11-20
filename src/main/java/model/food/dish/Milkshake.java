@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Milkshake extends Drink {
-    public Milkshake(String newName, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
+    public Milkshake(String newName, int newPrice, List<Pair<String, Integer>> newIngredients, int newTimeToCook) {
         super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
@@ -20,7 +20,7 @@ public class Milkshake extends Drink {
                 149,
                 new ArrayList<>
                         (Arrays.asList(
-                                new Pair<>(Milk.class, 1)
+                                new Pair<>(Milk.class.getName(), 1)
                         )),
                 GlobalVar.COOK_TIME_LOW
         );

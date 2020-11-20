@@ -5,8 +5,8 @@ import util.Pair;
 
 import java.util.List;
 
-public class CombinationSale extends Pair<List<Class<? extends Dish>>, Integer> {
-    public CombinationSale(Integer saleInPercents, List<Class<? extends Dish>> dishesCombination) {
+public class CombinationSale extends Pair<List<String>, Integer> {
+    public CombinationSale(Integer saleInPercents, List<String> dishesCombination) {
         super(dishesCombination, saleInPercents);
     }
 }

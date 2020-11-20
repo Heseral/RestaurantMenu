@@ -12,21 +12,21 @@ public class Restaurant {
     ...features...
      */
     // какие ингредиенты будет пытаться заказать ресторан для готовки блюд. Это модифицированный склад
-    private Map<Class<? extends Ingredient>, Integer> ingredients = new HashMap<>();
+    private Map<String, Integer> ingredients = new HashMap<>();
     // НЕ СКЛАД. Просто меню - доступные для покупки блюда(в виде классов)
-    private List<Class<? extends Dish>> menu = new ArrayList<>();
+    private List<String> menu = new ArrayList<>();
     // комбинации еды, с которыми будет скидка. Это список комбинаций, состоящий из пары "Набор, который нужен
     // для скидки" и сама скидка
     private List<CombinationSale> combinationsSales = new ArrayList<>();
     // жалкая попытка упростить алгоритм поиска доступной для клиента скидки. Если заказанное блюдо клиента относится
     // к классу-триггеру, то все таки проверяем собрана ли вся коллекция блюд для скидки
-    private Set<Class<? extends Dish>> combinationSaleTriggers = new HashSet<>();
+    private Set<String> combinationSaleTriggers = new HashSet<>();
 
-    public List<Class<? extends Dish>> getMenu() {
+    public List<String> getMenu() {
         return menu;
     }
 
-    public void setMenu(List<Class<? extends Dish>> menu) {
+    public void setMenu(List<String> menu) {
         this.menu = menu;
     }
 
@@ -38,19 +38,19 @@ public class Restaurant {
         this.combinationsSales = combinationsSales;
     }
 
-    public Map<Class<? extends Ingredient>, Integer> getIngredients() {
+    public Map<String, Integer> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Map<Class<? extends Ingredient>, Integer> ingredients) {
+    public void setIngredients(Map<String, Integer> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public Set<Class<? extends Dish>> getCombinationSaleTriggers() {
+    public Set<String> getCombinationSaleTriggers() {
         return combinationSaleTriggers;
     }
 
-    public void setCombinationSaleTriggers(Set<Class<? extends Dish>> combinationSaleTriggers) {
+    public void setCombinationSaleTriggers(Set<String> combinationSaleTriggers) {
         this.combinationSaleTriggers = combinationSaleTriggers;
     }
 }

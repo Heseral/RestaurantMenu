@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Champagne extends Alcoholic {
 
-    public Champagne(String newName, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
+    public Champagne(String newName, int newPrice, List<Pair<String, Integer>> newIngredients, int newTimeToCook) {
         super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
@@ -22,8 +22,8 @@ public class Champagne extends Alcoholic {
                 299,
                 new ArrayList<>
                         (Arrays.asList( // так что тут у нас 10%-ный раствор спирта вместо шампанского ахахах наконецта
-                                new Pair<>(Alcohol.class, 1),
-                                new Pair<>(Water.class, 1)
+                                new Pair<>(Alcohol.class.getName(), 1),
+                                new Pair<>(Water.class.getName(), 1)
                         )),
                 GlobalVar.COOK_TIME_MINIMUM
         );

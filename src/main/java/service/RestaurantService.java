@@ -28,7 +28,7 @@ public class RestaurantService {
      * @param restaurant ресторан, которому будут доставлены ингредиенты
      */
     public void resupplyIngredientsRandomly(Restaurant restaurant) {
-        for (Class<? extends Ingredient> ingredient : GlobalVar.INGREDIENTS) {
+        for (String ingredient : GlobalVar.INGREDIENTS) {
             restaurant.getIngredients().put(ingredient, Math.min(restaurant.getIngredients().get(ingredient) + Random.random(5, 15), 100));
         }
     }
@@ -50,8 +50,8 @@ public class RestaurantService {
     public void setDefaultRestaurantCombinationsSales(Restaurant restaurant) {
         int amountOfCombinationSales = Random.random(5, 15);
         int amountOfDishesForCombinationSale;
-        List<Class<? extends Dish>> combinationSaleDishes;
-        Class<? extends Dish> dishInCombinationSale;
+        List<String> combinationSaleDishes;
+        String dishInCombinationSale;
         for (int i = 0; i < amountOfCombinationSales; i++) {
             combinationSaleDishes = new ArrayList<>();
             amountOfDishesForCombinationSale = Random.random(2, 5);
@@ -70,11 +70,11 @@ public class RestaurantService {
      * @param restaurant ресторан, который будет заполнен ингрдиентами
      */
     public void setDefaultRestaurantIngredientsRandomly(Restaurant restaurant) {
-        Map<Class<? extends Ingredient>, Integer> ingredients = new HashMap<>();
-        for (Class<? extends Ingredient> ingredient : GlobalVar.INGREDIENTS) {
+        Map<String, Integer> ingredients = new HashMap<>();
+        for (String ingredient : GlobalVar.INGREDIENTS) {
             ingredients.put(ingredient, Random.random(25, 50));
         }
-        ingredients.put(Water.class, Integer.MAX_VALUE);
+        ingredients.put(Water.class.getName(), Integer.MAX_VALUE);
 
         restaurant.setIngredients(ingredients);
     }
@@ -91,11 +91,11 @@ public class RestaurantService {
      * @return true, если ресторан готов начать готовить dish прямо сейчас
      */
     public boolean isRestaurantAvailableToCookDishRightNow(Restaurant restaurant, Dish dish) {
-        Map<Class<? extends Ingredient>, Integer> availableIngredients = restaurant.getIngredients();
-        List<Pair<Class<? extends Ingredient>, Integer>> recipe = dish.getRecipe();
+        Map<String, Integer> availableIngredients = restaurant.getIngredients();
+        List<Pair<String, Integer>> recipe = dish.getRecipe();
 
         // а есть из чего готовить?
-        for (Pair<Class<? extends Ingredient>, Integer> recipePart : recipe) {
+        for (Pair<String, Integer> recipePart : recipe) {
             if (availableIngredients.get(recipePart.getFirst()) < recipePart.getSecond()) {
                 return false;
             }
@@ -189,7 +189,7 @@ public class RestaurantService {
      * @param visitor    посетитель, заказавший блюдо
      */
     private void startCookingDish(Restaurant restaurant, Dish dish, Visitor visitor, TaskController controlledBy) {
-        for (Pair<Class<? extends Ingredient>, Integer> recipePart : dish.getRecipe()) {
+        for (Pair<String, Integer> recipePart : dish.getRecipe()) {
             restaurant.getIngredients().put(recipePart.getFirst(), restaurant.getIngredients().get(recipePart.getFirst()) - recipePart.getSecond());
         }
         new TaskCooking(

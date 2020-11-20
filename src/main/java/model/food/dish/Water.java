@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Water extends Drink {
-    public Water(String newName, int newPrice, List<Pair<Class<? extends Ingredient>, Integer>> newIngredients, int newTimeToCook) {
+    public Water(String newName, int newPrice, List<Pair<String, Integer>> newIngredients, int newTimeToCook) {
         super(newName, newPrice, newIngredients, newTimeToCook);
     }
 
@@ -19,7 +19,7 @@ public class Water extends Drink {
                 49,
                 new ArrayList<>
                         (Arrays.asList( // вау вода готовится из воды
-                                new Pair<>(model.food.ingredient.Water.class, 1)
+                                new Pair<>(model.food.ingredient.Water.class.getName(), 1)
                         )),
                 GlobalVar.COOK_TIME_MINIMUM
         );

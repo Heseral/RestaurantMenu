@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Visitor {
     // пожелания посетителя в виде списка классов-категорий блюд
-    private transient List<Class<? extends Dish>> wishes;
+    private transient List<String> wishes;
     // ограничения в блюдах в виде классов ингредиентов блюд
-    private transient List<Class<? extends Ingredient>> restrictions = new ArrayList<>();
+    private transient List<String> restrictions = new ArrayList<>();
     // свободное время, которое посетитель готов подождать до приготовления блюда
     private int freeTime;
     // деньги посетителя
@@ -23,7 +23,7 @@ public class Visitor {
     // имя клиента
     private String name;
 
-    public Visitor(List<Class<? extends Ingredient>> restrictions, List<Class<? extends Dish>> wishes, int freeTime, int cash) {
+    public Visitor(List<String> restrictions, List<String> wishes, int freeTime, int cash) {
         setRestrictions(restrictions);
         setWishes(wishes);
         setFreeTime(freeTime);
@@ -36,8 +36,8 @@ public class Visitor {
         setOrder(new Order(this));
         setCash(Random.random(300, 10000));
         setFreeTime(Random.random(5, 120));
-        List<Class<? extends Dish>> desirableCategories = new ArrayList<>();
-        for (Class<? extends Dish> category : GlobalVar.DISH_CATEGORIES) {
+        List<String> desirableCategories = new ArrayList<>();
+        for (String category : GlobalVar.DISH_CATEGORIES) {
             // вероятность заказа этой категории 50%
             if (Random.prob(50)) {
                 int amount = Random.random(1, 3);
@@ -54,19 +54,19 @@ public class Visitor {
         return name;
     }
 
-    public List<Class<? extends Dish>> getWishes() {
+    public List<String> getWishes() {
         return wishes;
     }
 
-    public void setWishes(List<Class<? extends Dish>> wishes) {
+    public void setWishes(List<String> wishes) {
         this.wishes = wishes;
     }
 
-    public List<Class<? extends Ingredient>> getRestrictions() {
+    public List<String> getRestrictions() {
         return restrictions;
     }
 
-    public void setRestrictions(List<Class<? extends Ingredient>> restrictions) {
+    public void setRestrictions(List<String> restrictions) {
         this.restrictions = restrictions;
     }
 

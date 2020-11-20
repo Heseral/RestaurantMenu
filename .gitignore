@@ -1,5 +1,5 @@
 # Compiled class file
-*.class
+*.class.getName()
 
 # Log file
 *.log

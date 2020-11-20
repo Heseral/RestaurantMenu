@@ -30,8 +30,8 @@ public class VisitorService {
             Restaurant restaurant,
             TaskController controlledBy
     ) {
-        List<Class<? extends Dish>> desirableCategories = new ArrayList<>();
-        for (Class<? extends Dish> category : GlobalVar.DISH_CATEGORIES) {
+        List<String> desirableCategories = new ArrayList<>();
+        for (String category : GlobalVar.DISH_CATEGORIES) {
             // вероятность заказа этой категории 50%
             if (Random.prob(50)) {
                 int amount = Random.random(1, 3);
@@ -54,19 +54,19 @@ public class VisitorService {
      */
     public boolean createPartiallyRandomOrder(
             Visitor visitor,
-            List<Class<? extends Dish>> desirableCategories,
+            List<String> desirableCategories,
             RestaurantService restaurantService,
             Restaurant restaurant,
             TaskController controlledBy
     ) {
-        List<Class<? extends Dish>> desirableDishes = new ArrayList<>();
-        for (Class<? extends Dish> desirableCategory : desirableCategories) {
+        List<String> desirableDishes = new ArrayList<>();
+        for (String desirableCategory : desirableCategories) {
             desirableDishes.add(Random.pick(GlobalVar.DISHES_BY_CATEGORY.get(desirableCategory)));
         }
 
         try {
             return createSpecifiedOrder(visitor, desirableDishes, restaurantService, restaurant, controlledBy);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return false;
@@ -82,18 +82,18 @@ public class VisitorService {
      */
     public boolean createSpecifiedOrder(
             Visitor visitor,
-            List<Class<? extends Dish>> desirableDishes,
+            List<String> desirableDishes,
             RestaurantService restaurantService,
             Restaurant restaurant,
             TaskController controlledBy
-    ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         // нельзя создать пустой заказ
         if (desirableDishes.size() < 1) {
             return false;
         }
 
-        for (Class<? extends Dish> desirableDish : desirableDishes) {
-            tryToAddDishToOrder(visitor, desirableDish.getConstructor().newInstance(), restaurantService, restaurant);
+        for (String desirableDish : desirableDishes) {
+            tryToAddDishToOrder(visitor, (Dish) Class.forName(desirableDish).getConstructor().newInstance(), restaurantService, restaurant);
         }
 
         makeOrder(visitor, restaurantService, restaurant, controlledBy);
@@ -176,7 +176,7 @@ public class VisitorService {
         if (visitor.getFreeTime() < dish.getTimeToCook()) {
             return false;
         }
-        for (Pair<Class<? extends Ingredient>, Integer> recipePart : dish.getRecipe()) {
+        for (Pair<String, Integer> recipePart : dish.getRecipe()) {
             if (visitor.getRestrictions().contains(recipePart.getFirst()) && recipePart.getSecond() > 0) {
                 return false;
             }
@@ -249,9 +249,9 @@ public class VisitorService {
                 // проходимся по блюдам в наборе, смотрим нашлось ли такое блюдо в заказе. Если да, добавляем
                 // в список возможно собранного набора блюд со скидкой
                 middleFor:
-                for (Class<? extends Dish> combinationSaleDish : combinationSale.getFirst()) {
+                for (String combinationSaleDish : combinationSale.getFirst()) {
                     for (Dish unhandledDish : unhandledDishes) {
-                        if (unhandledDish.getClass() == combinationSaleDish) {
+                        if (unhandledDish.getClass().getName().equals(combinationSaleDish)) {
                             possibleDishesWithSale.add(unhandledDish);
                             continue middleFor;
                         }

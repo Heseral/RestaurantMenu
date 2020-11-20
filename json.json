@@ -1,120 +1,20 @@
 {
-  "currentTime": 31,
-  "tasksCooking": [
-    {
-      "dish": {
-        "timeToCook": 32,
-        "currentPrice": 199,
-        "name": "Борщ",
-        "basicPrice": 199
-      },
-      "visitor": {
-        "freeTime": 40,
-        "cash": -43,
-        "order": {
-          "orderedDishes": [
-            {
-              "timeToCook": 1,
-              "currentPrice": 199,
-              "name": "Пиво",
-              "basicPrice": 199
-            },
-            {
-              "timeToCook": 32,
-              "currentPrice": 199,
-              "name": "Борщ",
-              "basicPrice": 199
-            },
-            {
-              "timeToCook": 16,
-              "currentPrice": 199,
-              "name": "Блины",
-              "basicPrice": 199
-            }
-          ],
-          "servedDishes": [],
-          "totalPrice": 597
-        },
-        "name": "Visitor #1468357786"
-      },
-      "restaurantService": {},
-      "launchTime": 32
-    },
-    {
-      "dish": {
-        "timeToCook": 64,
-        "currentPrice": 399,
-        "name": "Фруктовый торт",
-        "basicPrice": 399
-      },
-      "visitor": {
-        "freeTime": 75,
-        "cash": 5348,
-        "order": {
-          "orderedDishes": [
-            {
-              "timeToCook": 16,
-              "currentPrice": 199,
-              "name": "Блины",
-              "basicPrice": 199
-            },
-            {
-              "timeToCook": 64,
-              "currentPrice": 399,
-              "name": "Фруктовый торт",
-              "basicPrice": 399
-            }
-          ],
-          "servedDishes": [],
-          "totalPrice": 598
-        },
-        "name": "Visitor #990416209"
-      },
-      "restaurantService": {},
-      "launchTime": 79
-    },
-    {
-      "dish": {
-        "timeToCook": 16,
-        "currentPrice": 199,
-        "name": "Блины",
-        "basicPrice": 199
-      },
-      "visitor": {
-        "freeTime": 71,
-        "cash": 9360,
-        "order": {
-          "orderedDishes": [
-            {
-              "timeToCook": 16,
-              "currentPrice": 199,
-              "name": "Блины",
-              "basicPrice": 199
-            }
-          ],
-          "servedDishes": [],
-          "totalPrice": 199
-        },
-        "name": "Visitor #1952779858"
-      },
-      "restaurantService": {},
-      "launchTime": 46
-    }
-  ],
+  "currentTime": 6,
+  "tasksCooking": [],
   "tasksWaiting": [],
   "visitorService": {},
   "restaurantService": {}
 }{
   "ingredients": {
-    "class model.food.ingredient.Milk": 48,
-    "class model.food.ingredient.Fruits": 55,
-    "class model.food.ingredient.Vegetables": 45,
-    "class model.food.ingredient.Egg": 26,
-    "class model.food.ingredient.Water": -2147483638,
-    "class model.food.ingredient.Meat": 46,
-    "class model.food.ingredient.Flour": 49,
-    "class model.food.ingredient.Alcohol": 52,
-    "class model.food.ingredient.Sugar": 54
+    "model.food.ingredient.Sugar": 37,
+    "model.food.ingredient.Water": -2147483640,
+    "model.food.ingredient.Meat": 50,
+    "model.food.ingredient.Milk": 37,
+    "model.food.ingredient.Fruits": 32,
+    "model.food.ingredient.Alcohol": 56,
+    "model.food.ingredient.Vegetables": 42,
+    "model.food.ingredient.Egg": 40,
+    "model.food.ingredient.Flour": 38
   },
   "menu": [
     "model.food.dish.Beer",
@@ -135,86 +35,72 @@
   "combinationsSales": [
     {
       "first": [
-        "model.food.dish.FishSoup",
-        "model.food.dish.Vodka"
+        "model.food.dish.Champagne",
+        "model.food.dish.Soda"
       ],
-      "second": 27
+      "second": 8
     },
     {
       "first": [
-        "model.food.dish.Milkshake",
-        "model.food.dish.Spaghetti",
-        "model.food.dish.Spaghetti"
-      ],
-      "second": 27
-    },
-    {
-      "first": [
-        "model.food.dish.Borscht",
-        "model.food.dish.Pancakes",
         "model.food.dish.CutletsWithMashedPotato",
-        "model.food.dish.Spaghetti"
+        "model.food.dish.Borscht",
+        "model.food.dish.FishSoup"
       ],
       "second": 25
     },
     {
       "first": [
-        "model.food.dish.Pancakes",
+        "model.food.dish.Water",
+        "model.food.dish.Soda",
+        "model.food.dish.CutletsWithMashedPotato",
+        "model.food.dish.FishSoup",
+        "model.food.dish.CutletsWithMashedPotato"
+      ],
+      "second": 8
+    },
+    {
+      "first": [
         "model.food.dish.Spaghetti",
-        "model.food.dish.Milkshake",
+        "model.food.dish.Vodka",
         "model.food.dish.FishSoup"
       ],
-      "second": 6
+      "second": 11
     },
     {
       "first": [
-        "model.food.dish.CutletsWithMashedPotato",
-        "model.food.dish.Soda",
-        "model.food.dish.Bread"
-      ],
-      "second": 12
-    },
-    {
-      "first": [
-        "model.food.dish.Sandwich",
         "model.food.dish.Water",
-        "model.food.dish.Soda",
-        "model.food.dish.FishSoup",
+        "model.food.dish.Vodka"
+      ],
+      "second": 10
+    },
+    {
+      "first": [
+        "model.food.dish.Champagne",
+        "model.food.dish.Beer",
+        "model.food.dish.Spaghetti",
         "model.food.dish.Spaghetti"
       ],
-      "second": 6
+      "second": 7
     },
     {
       "first": [
-        "model.food.dish.Sandwich",
-        "model.food.dish.Water",
-        "model.food.dish.Water",
-        "model.food.dish.Sandwich",
-        "model.food.dish.Champagne"
+        "model.food.dish.Spaghetti",
+        "model.food.dish.Milkshake",
+        "model.food.dish.Beer"
       ],
-      "second": 26
-    },
-    {
-      "first": [
-        "model.food.dish.Pancakes",
-        "model.food.dish.FishSoup",
-        "model.food.dish.Sandwich"
-      ],
-      "second": 27
+      "second": 25
     }
   ],
   "combinationSaleTriggers": [
-    "model.food.dish.Vodka",
-    "model.food.dish.Milkshake",
-    "model.food.dish.Borscht",
-    "model.food.dish.Pancakes",
-    "model.food.dish.Bread",
-    "model.food.dish.Spaghetti",
-    "model.food.dish.Champagne",
-    "model.food.dish.Sandwich",
-    "model.food.dish.FishSoup",
     "model.food.dish.CutletsWithMashedPotato",
+    "model.food.dish.Vodka",
+    "model.food.dish.Spaghetti",
+    "model.food.dish.Borscht",
+    "model.food.dish.Milkshake",
+    "model.food.dish.Beer",
     "model.food.dish.Soda",
+    "model.food.dish.FishSoup",
+    "model.food.dish.Champagne",
     "model.food.dish.Water"
   ]
 }
