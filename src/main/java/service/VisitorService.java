@@ -3,10 +3,9 @@ package service;
 import model.CombinationSale;
 import model.Restaurant;
 import model.food.dish.Dish;
-import model.food.ingredient.Ingredient;
 import util.GlobalVar;
 import util.Misc;
-import util.Pair;
+import util.RecipePart;
 import util.Random;
 import util.timer_tasks.TaskController;
 import model.Order;
@@ -176,8 +175,8 @@ public class VisitorService {
         if (visitor.getFreeTime() < dish.getTimeToCook()) {
             return false;
         }
-        for (Pair<String, Integer> recipePart : dish.getRecipe()) {
-            if (visitor.getRestrictions().contains(recipePart.getFirst()) && recipePart.getSecond() > 0) {
+        for (RecipePart recipePart : dish.getRecipe()) {
+            if (visitor.getRestrictions().contains(recipePart.getIngredient()) && recipePart.getAmount() > 0) {
                 return false;
             }
         }

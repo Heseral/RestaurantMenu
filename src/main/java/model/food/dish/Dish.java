@@ -1,9 +1,8 @@
 package model.food.dish;
 
 import model.food.Food;
-import model.food.ingredient.Ingredient;
 import util.GlobalVar;
-import util.Pair;
+import util.RecipePart;
 
 import java.util.List;
 
@@ -20,13 +19,13 @@ public class Dish extends Food{
     // Напомню, что приготовление из ингредиентов не предусматривается ТЗ, сказано только "в ресторане есть блюда".
     // В теории может быть расширено и до таких целей, но тогда, думаю, лучше будет объединить классы ингредиентов и
     // еды, так как, например, немного глупо готовить хлеб с нуля из базовых ингредиентов для бутерброда.
-    private transient List<Pair<String, Integer>> recipe;
+    private transient List<RecipePart> recipe;
 
     // не передавайте нуллы никуда. Лучше передайте свежесозданный, но пустой объект
     public Dish(
             String newName,
             int newPrice,
-            List<Pair<String, Integer>> newIngredients,
+            List<RecipePart> newIngredients,
             int newTimeToCook
     ) {
         setName(newName);
@@ -36,11 +35,11 @@ public class Dish extends Food{
         setTimeToCook(newTimeToCook);
     }
 
-    public List<Pair<String, Integer>> getRecipe() {
+    public List<RecipePart> getRecipe() {
         return recipe;
     }
 
-    public void setRecipe(List<Pair<String, Integer>> recipe) {
+    public void setRecipe(List<RecipePart> recipe) {
         this.recipe = recipe;
     }
 
@@ -68,8 +67,8 @@ public class Dish extends Food{
                 newPrice,
                 new ArrayList<>
                         (Arrays.asList(
-                                new Pair<>(, ),
-                                new Pair<>(, )
+                                new Pair(, ),
+                                new Pair(, )
                         )),
                 GlobalVar.COOK_TIME_DEFAULT
         );

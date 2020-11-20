@@ -3,10 +3,9 @@ package service;
 import model.CombinationSale;
 import model.Restaurant;
 import model.food.dish.Dish;
-import model.food.ingredient.Ingredient;
 import model.food.ingredient.Water;
 import util.GlobalVar;
-import util.Pair;
+import util.RecipePart;
 import util.Random;
 import util.timer_tasks.TaskController;
 import util.timer_tasks.TaskCooking;
@@ -92,11 +91,11 @@ public class RestaurantService {
      */
     public boolean isRestaurantAvailableToCookDishRightNow(Restaurant restaurant, Dish dish) {
         Map<String, Integer> availableIngredients = restaurant.getIngredients();
-        List<Pair<String, Integer>> recipe = dish.getRecipe();
+        List<RecipePart> recipe = dish.getRecipe();
 
         // а есть из чего готовить?
-        for (Pair<String, Integer> recipePart : recipe) {
-            if (availableIngredients.get(recipePart.getFirst()) < recipePart.getSecond()) {
+        for (RecipePart recipePart : recipe) {
+            if (availableIngredients.get(recipePart.getIngredient()) < recipePart.getAmount()) {
                 return false;
             }
         }
@@ -189,8 +188,8 @@ public class RestaurantService {
      * @param visitor    посетитель, заказавший блюдо
      */
     private void startCookingDish(Restaurant restaurant, Dish dish, Visitor visitor, TaskController controlledBy) {
-        for (Pair<String, Integer> recipePart : dish.getRecipe()) {
-            restaurant.getIngredients().put(recipePart.getFirst(), restaurant.getIngredients().get(recipePart.getFirst()) - recipePart.getSecond());
+        for (RecipePart recipePart : dish.getRecipe()) {
+            restaurant.getIngredients().put(recipePart.getIngredient(), restaurant.getIngredients().get(recipePart.getIngredient()) - recipePart.getAmount());
         }
         new TaskCooking(
                 dish,
