@@ -1,8 +1,5 @@
 package model;
 
-import model.food.dish.Dish;
-import model.food.ingredient.Ingredient;
-
 import java.util.*;
 
 public class Restaurant {

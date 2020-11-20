@@ -1,7 +1,7 @@
 package model.food.dish;
 
-import util.GlobalVar;
 import model.RecipePart;
+import util.GlobalVar;
 
 import java.util.ArrayList;
 import java.util.Arrays;

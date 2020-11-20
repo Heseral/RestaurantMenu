@@ -1,9 +1,9 @@
 package model.food.dish;
 
+import model.RecipePart;
 import model.food.ingredient.Alcohol;
 import model.food.ingredient.Water;
 import util.GlobalVar;
-import model.RecipePart;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,8 +1,5 @@
 package model;
 
-import model.Order;
-import model.food.dish.Dish;
-import model.food.ingredient.Ingredient;
 import util.GlobalVar;
 import util.Random;
 

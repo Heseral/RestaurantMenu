@@ -1,8 +1,8 @@
 package model.food.dish;
 
+import model.RecipePart;
 import model.food.ingredient.Milk;
 import util.GlobalVar;
-import model.RecipePart;
 
 import java.util.ArrayList;
 import java.util.Arrays;

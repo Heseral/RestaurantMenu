@@ -1,9 +1,10 @@
 import com.google.gson.stream.JsonReader;
 import model.Restaurant;
 import service.RestaurantService;
-import util.GlobalVar;
-import util.timer_tasks.*;
 import service.VisitorService;
+import util.GlobalVar;
+import util.timer_tasks.Task;
+import util.timer_tasks.TaskController;
 
 import javax.swing.*;
 import java.awt.*;

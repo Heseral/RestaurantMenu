@@ -1,9 +1,8 @@
 package model.food.dish;
 
-import model.food.ingredient.*;
-import model.food.ingredient.Water;
-import util.GlobalVar;
 import model.RecipePart;
+import model.food.ingredient.*;
+import util.GlobalVar;
 
 import java.util.ArrayList;
 import java.util.Arrays;

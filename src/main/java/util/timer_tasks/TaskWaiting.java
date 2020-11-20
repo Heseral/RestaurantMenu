@@ -1,9 +1,9 @@
 package util.timer_tasks;
 
 import model.Restaurant;
-import service.RestaurantService;
-import model.food.dish.Dish;
 import model.Visitor;
+import model.food.dish.Dish;
+import service.RestaurantService;
 import service.VisitorService;
 
 public class TaskWaiting extends Task {

@@ -2,29 +2,13 @@ package util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.food.dish.Drink;
-import model.food.dish.Alcoholic;
-import model.food.dish.Beer;
-import model.food.dish.Champagne;
-import model.food.dish.Vodka;
-import model.food.dish.Milkshake;
-import model.food.dish.Soda;
-import model.food.dish.WaterBottle;
-import model.food.dish.Bread;
-import model.food.dish.Sandwich;
-import model.food.dish.Snack;
-import model.food.dish.CutletsWithMashedPotato;
-import model.food.dish.SoftFood;
-import model.food.dish.Spaghetti;
-import model.food.dish.Borscht;
-import model.food.dish.FishSoup;
-import model.food.dish.Soup;
-import model.food.dish.Cake;
-import model.food.dish.Pancakes;
-import model.food.dish.SweetFood;
+import model.food.dish.*;
 import model.food.ingredient.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public abstract class GlobalVar {
     // примитивная защита от конфликтов потоков

@@ -1,19 +1,18 @@
 package service;
 
-import model.CombinationSale;
-import model.Restaurant;
+import model.*;
 import model.food.dish.Dish;
 import model.food.ingredient.Water;
 import util.GlobalVar;
-import model.RecipePart;
 import util.Random;
 import util.timer_tasks.TaskController;
 import util.timer_tasks.TaskCooking;
 import util.timer_tasks.TaskWaiting;
-import model.Order;
-import model.Visitor;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RestaurantService {
 
