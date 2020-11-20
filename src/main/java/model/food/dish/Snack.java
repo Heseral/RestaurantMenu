@@ -1,6 +1,6 @@
 package model.food.dish;
 
-import util.RecipePart;
+import model.RecipePart;
 
 import java.util.List;
 

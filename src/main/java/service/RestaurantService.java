@@ -5,7 +5,7 @@ import model.Restaurant;
 import model.food.dish.Dish;
 import model.food.ingredient.Water;
 import util.GlobalVar;
-import util.RecipePart;
+import model.RecipePart;
 import util.Random;
 import util.timer_tasks.TaskController;
 import util.timer_tasks.TaskCooking;

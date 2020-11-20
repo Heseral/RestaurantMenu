@@ -2,7 +2,7 @@ package model.food.dish;
 
 import model.food.ingredient.Milk;
 import util.GlobalVar;
-import util.RecipePart;
+import model.RecipePart;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -4,7 +4,7 @@ import model.food.ingredient.Meat;
 import model.food.ingredient.Vegetables;
 import model.food.ingredient.Water;
 import util.GlobalVar;
-import util.RecipePart;
+import model.RecipePart;
 
 import java.util.ArrayList;
 import java.util.Arrays;

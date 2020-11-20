@@ -1,4 +1,4 @@
-package util;
+package model;
 
 public class RecipePart {
     private String ingredient;

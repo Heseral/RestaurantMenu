@@ -3,7 +3,7 @@ package model.food.dish;
 import model.food.ingredient.Alcohol;
 import model.food.ingredient.Water;
 import util.GlobalVar;
-import util.RecipePart;
+import model.RecipePart;
 
 import java.util.ArrayList;
 import java.util.Arrays;
